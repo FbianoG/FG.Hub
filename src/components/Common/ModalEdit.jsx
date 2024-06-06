@@ -63,6 +63,7 @@ export default function ModalEdit({ data, type, func }) {
         const file = dataForm.file[0]
         const name = dataForm.name
         try {
+            if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
             if (file.type !== 'application/pdf') throw new Error('Somente arquivos PDF são permitidos.')
             if (file.size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
             const uploadFirebase = await uploadTermFirebase(file, name)
@@ -87,7 +88,10 @@ export default function ModalEdit({ data, type, func }) {
         const file = dataForm.file[0]
         const name = dataForm.name
         try {
+            if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
             if (file) {
+                if (file.type !== 'application/pdf') throw new Error('Somente arquivos PDF são permitidos.')
+                if (file.size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
                 const uploadFirebase = await uploadTermFirebase(file, name)
                 const urlImg = uploadFirebase.split('token=').slice(0, 1).join('')
                 const urlToken = uploadFirebase.split('token=').slice(1).join('')
