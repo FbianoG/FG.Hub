@@ -1,0 +1,15 @@
+.content {
+  height: 100%;
+  overflow: auto;
+  padding: 20px 0 20px 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--color-secundary);
+  font-size: 32px;
+  font-weight: 500;
+}

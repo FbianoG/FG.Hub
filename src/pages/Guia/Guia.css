@@ -1,0 +1,371 @@
+.papel {
+    overflow: hidden;
+    height: 1360px;
+    width: 100%;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    background: rgba(0, 0, 0, 0.793);
+    z-index: 999;
+}
+
+.btn_backGuia {
+    position: fixed;
+    top: 20px;
+    left: 10%;
+    padding: 10px 20px;
+    background: var(--color-tertiary);
+    color: #fdfdfd;
+    border: none;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: 300ms;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 5px 5px 10px #0003;
+
+    &:hover {
+        background: #fdfdfd;
+        color: var(--color-tertiary);
+    }
+    
+}
+
+.papel img {
+    width: 1000px;
+    height: 1400px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 0px;
+}
+
+.dados {
+    width: 1000px;
+    height: 1400px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -1275px;
+    border: 1px solid rgba(65, 255, 1, 0);
+}
+
+.dados p {
+    max-height: 18px;
+    min-height: 18px;
+    background: white;
+    margin: 14px 0;
+    margin-left: 50px;
+    padding-left: 5px;
+    width: 100px;
+    z-index: 1;
+    text-transform: capitalize;
+}
+
+p#guia {
+    position: relative;
+    left: 190px;
+    width: 475px;
+    top: -15px;
+}
+
+p#dataAut {
+    position: relative;
+    top: 2px;
+    width: 210px;
+}
+
+p#senha {
+    position: relative;
+    top: -30px;
+    left: 226px;
+    width: 417px;
+}
+
+p#carteira {
+    position: relative;
+    width: 410px;
+}
+
+p#nome {
+    position: relative;
+    top: 15px;
+    width: 555px;
+}
+
+p#cnpj1 {
+    position: relative;
+    top: 47px;
+    width: 290px;
+}
+
+p#contratado1 {
+    position: relative;
+    left: 307px;
+    top: 15px;
+    width: 580px;
+}
+
+p#medico {
+    position: relative;
+    top: 36px;
+    width: 310px;
+}
+
+p#conselho {
+    position: relative;
+    left: 330px;
+    top: 10px;
+    width: 68px;
+    text-align: center;
+}
+
+p#crm {
+    position: relative;
+    top: -23px;
+    left: 422px;
+    width: 288px;
+}
+
+p#uf {
+    position: relative;
+    width: 30px;
+    top: -55px;
+    left: 733px;
+    text-align: center;
+}
+
+p#cbo {
+    position: relative;
+    left: 793px;
+    top: -85px;
+    width: 97px;
+}
+
+p#cnpj2 {
+    position: relative;
+    top: -45px;
+    width: 290px;
+}
+
+p#contratado2 {
+    position: relative;
+    top: -78px;
+    left: 309px;
+    width: 360px;
+}
+
+p#carater {
+    display: inline-block;
+    position: relative;
+    top: -76px;
+    width: 123px;
+    text-align: center;
+}
+
+p#tipo {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    top: -76px;
+    left: -18px;
+    width: 92px;
+}
+
+p#regime {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: -76px;
+    left: -16px;
+    width: 52px;
+}
+
+p#diariaSol {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: -76px;
+    left: 8px;
+    width: 74px;
+}
+
+p#anexo {
+    position: relative;
+    top: -70px;
+    width: 850px;
+}
+
+p#cid {
+    background: none;
+    position: relative;
+    top: 90px;
+    width: 113px;
+}
+
+.tuss {
+    background: #fff;
+    width: 868px;
+    height: 235px;
+    position: relative;
+    top: 142px;
+    left: 68px;
+    display: grid;
+    grid-template-columns: 50px 180px 470px 80px 80px;
+}
+
+.tabela p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.codigos p {
+    margin: 0;
+    padding: 0;
+}
+
+.descricao p {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quantidade p {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.quantidadeAut p {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+#diariaAut {
+    position: relative;
+    top: 174px;
+    left: 232px;
+    text-align: center;
+}
+
+#leito {
+    position: relative;
+    top: 144px;
+    left: 479px;
+}
+
+#cnpj3 {
+    position: relative;
+    width: 240px;
+    top: 155px;
+    left: -3px;
+
+}
+
+#contratado3 {
+    position: relative;
+    width: 515px;
+    top: 121px;
+    left: 252px
+}
+
+#dataSol {
+    position: relative;
+    top: 211px;
+    width: 181px;
+    left: -3px;
+}
+
+#borda {
+    border: 7px solid #fff;
+    width: 939px;
+    position: relative;
+    height: 1307px;
+    top: -1090px;
+    left: 31px;
+    z-index: 0;
+}
+
+#logoImage {
+    background: #fff;
+    position: relative;
+    top: -2391px;
+    width: 200px;
+    height: 67px;
+    left: 46px;
+}
+
+#logo {
+    width: 100%;
+    height: 100%;
+}
+
+
+@media print {
+
+    header, .btn_backGuia {
+        display: none;
+    }
+
+    
+
+    .content {
+
+        padding: 0;
+        margin: 0;
+        width: max-content;
+        height: max-content;
+    }
+
+    .formContainer-guia {
+        display: none;
+    }
+
+    .papel {}
+
+    .title {
+        display: none;
+    }
+
+    .papel {
+        margin-left: 0px;
+        position: relative;
+    }
+
+    p#dataAut {
+        outline: none;
+    }
+
+    p#anexo {
+        outline: none;
+    }
+
+    .descricao p {
+        outline: none;
+    }
+
+    p#diariaAut {
+        outline: none;
+    }
+
+    p#dataSol {
+        outline: none;
+    }
+}
+
+@page {
+    size: 210mm 290mm;
+    margin: 0;
+    margin-bottom: 0px;
+}

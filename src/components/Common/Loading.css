@@ -1,0 +1,38 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loading__circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border: 3px solid #0001;
+    border-bottom-color: var(--color-tertiary);
+    border-radius: 50%;
+    animation: rotate 900ms linear infinite;
+}
+
+.loading__text {
+    color: #777;
+    font-weight: 500;
+    animation: cRotate 1500ms infinite alternate;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cRotate {
+    100% {
+        opacity: 0.5;
+        filter: blur(1px);
+        -webkit-filter: blur(1px);
+    }
+
+}

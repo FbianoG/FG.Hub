@@ -1,0 +1,76 @@
+.formContainer-guia {
+    margin: 20px auto 0;
+}
+
+.formContainer-guia fieldset {
+    width: 620px;
+    margin: 0 0 20px;
+    display: flex;
+    /* flex-direction: column; */
+    padding: 10px 0;
+    flex-wrap: wrap;
+    gap: 10px 0;
+    border-radius: 7px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+}
+
+.formField-title {
+    width: 100%;
+    padding: 0 10px 10px;
+    margin: 0 0 10px;
+    /* line-height: 50px; */
+    border-bottom: 4px solid #f2f3f6;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+.formContainer-guia fieldset label {
+    width: 30%;
+    color: var(--color-quarter);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0 0 0 10px;
+}
+
+.formContainer-guia fieldset input {
+    width: calc(70% - 10px);
+    outline: none;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: #555;
+}
+
+.formContainer-guia fieldset input:focus {
+    border-color: var(--color-tertiary);
+}
+
+.formContainer-guia fieldset select {
+    width: calc(70% - 10px);
+    border-radius: 7px;
+    padding: 3px 5px;
+    outline: none;
+    border: 1px solid #ddd;
+    color: #555;
+}
+
+.formField__divider {
+    width: 100%;
+    height: 1px;
+    background: #0001;
+    margin: 0 10px;
+}
+
+
+.formField__content-tuss {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 0;
+}
+
+
+
+
+
