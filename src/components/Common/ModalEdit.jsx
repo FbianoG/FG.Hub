@@ -99,7 +99,7 @@ export default function ModalEdit({ data, type, func }) {
                 dataForm.srcToken = urlToken
             }
             const response = await UpdateTerm(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Ramal criado com sucesso!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadTerms()
         } catch (error) {
