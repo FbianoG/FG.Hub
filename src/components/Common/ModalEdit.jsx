@@ -47,7 +47,7 @@ export default function ModalEdit({ data, type, func }) {
         dataForm._id = data._id
         try {
             const response = await UpdatePlan(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Plano atualizado!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadPlans()
         } catch (error) {
@@ -64,6 +64,7 @@ export default function ModalEdit({ data, type, func }) {
         const name = dataForm.name
         try {
             if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
+            if (!file) throw new Error('É necessário um arquivo PDF.')
             if (file.type !== 'application/pdf') throw new Error('Somente arquivos PDF são permitidos.')
             if (file.size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
             const uploadFirebase = await uploadTermFirebase(file, name)
@@ -72,7 +73,7 @@ export default function ModalEdit({ data, type, func }) {
             dataForm.src = urlImg
             dataForm.srcToken = urlToken
             const response = await CreateTerm(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Ramal criado com sucesso!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadTerms()
         } catch (error) {
@@ -99,8 +100,7 @@ export default function ModalEdit({ data, type, func }) {
                 dataForm.srcToken = urlToken
             }
             const response = await UpdateTerm(dataForm)
-            console.log(response)
-            func.setShowAlert({ type: 'success', text: response })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadTerms()
         } catch (error) {
@@ -116,7 +116,7 @@ export default function ModalEdit({ data, type, func }) {
     async function createRamal(dataForm) {
         try {
             const response = await CreateRamal(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Ramal criado com sucesso!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadRamais()
         } catch (error) {
@@ -131,7 +131,7 @@ export default function ModalEdit({ data, type, func }) {
         dataForm._id = data._id
         try {
             const response = await UpdateRamal(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Ramal criado com sucesso!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadRamais()
         } catch (error) {
@@ -147,7 +147,7 @@ export default function ModalEdit({ data, type, func }) {
     async function createSite(dataForm) {
         try {
             const response = await CreateSite(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Site criado com sucesso!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadSites()
         } catch (error) {
@@ -162,7 +162,7 @@ export default function ModalEdit({ data, type, func }) {
         dataForm._id = data._id
         try {
             const response = await UpdateSite(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Plano atualizado!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             func.loadSites()
         } catch (error) {
@@ -178,7 +178,7 @@ export default function ModalEdit({ data, type, func }) {
         if (!window.confirm('Você tem certeza que deseja excluir este item?')) return
         try {
             const response = await DeleteIten(exType, data._id)
-            func.setShowAlert({ type: 'success', text: 'Plano excluído com sucesso!' })
+            func.setShowAlert({ type: 'success', text: response.message })
             func.setModalEdit(false)
             if (exType === 'plan') func.loadPlans()
             else if (exType === 'term') func.loadTerms()
