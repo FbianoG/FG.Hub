@@ -31,8 +31,6 @@
 @keyframes cRotate {
     100% {
         opacity: 0.5;
-        filter: blur(1px);
-        -webkit-filter: blur(1px);
     }
 
 }
