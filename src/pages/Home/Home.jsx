@@ -3,19 +3,38 @@ import ToastAlert from '../../components/Common/ToastAlert'
 import './Home.css'
 
 import { useForm } from "react-hook-form";
-import { Login } from '../../api/getApi';
+import { CreateUser, Login } from '../../api/getApi';
 
 export default function Home({ func }) {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [create, setCreate] = useState(false)
     const [showAlert, setShowAlert] = useState(false)
 
-    useEffect(()=> {localStorage.clear()}, [])
+    useEffect(() => { localStorage.clear() }, [])
+
     const login = async (dataForm) => {
         try {
             const response = await Login(dataForm)
             localStorage.setItem('Token', response.token)
+            reset()
             location.href = '/planos'
+        } catch (error) {
+            console.log(error)
+            setShowAlert({ text: error.message, type: 'error' })
+        } finally {
+            setTimeout(() => { setShowAlert(false) }, 6000);
+        }
+    }
+
+    const createUser = async (dataForm) => {
+        try {
+            if (!dataForm.username || dataForm.username.trim() === '' || !dataForm.password || dataForm.password.trim() === '' || !dataForm.keyPass) throw new Error('Preencha todos os campos!')
+            if (dataForm.password !== dataForm.password2) throw new Error('As senhas estão diferentes.')
+            const response = await CreateUser(dataForm)
+            setCreate(false)
+            reset()
+            setShowAlert({ text: response.message, type: 'success' })
         } catch (error) {
             console.log(error)
             setShowAlert({ text: error.message, type: 'error' })
@@ -33,14 +52,30 @@ export default function Home({ func }) {
                 <img src="/undraw_selected_box_09k4 (1).svg" alt='' />
                 <span>Desenvolvido por: Fabiano Gonçalves</span>
             </div>
-            <form onSubmit={handleSubmit(login)}>
+            {!create && <form onSubmit={handleSubmit(login)}>
                 <h3>FG.Torrent</h3>
                 <label htmlFor=''>Login</label>
                 <input type='text' {...register('username')} />
                 <label htmlFor=''>Senha</label>
                 <input type='password' {...register('password')} />
                 <button type='submit'>Acessar</button>
-            </form>
+                <span onClick={() => { setCreate(true), reset() }}>Criar conta</span>
+            </form>}
+
+            {create && <form onSubmit={handleSubmit(createUser)}>
+                <h3>FG.Torrent</h3>
+                <label htmlFor=''>Login</label>
+                <input type='text' {...register('username')} required />
+                <label htmlFor=''>Senha</label>
+                <input type='password' {...register('password')} required />
+                <label htmlFor='' style={{ left: '-80px' }}>Repitir Senha</label>
+                <input type='password' {...register('password2')} required />
+                <label htmlFor=''>KeyPass</label>
+                <input type='password' {...register('keyPass')} required />
+                <button type='submit'>Criar Conta</button>
+                <span onClick={() => { setCreate(false), reset() }}>Cancelar</span>
+            </form>}
+
             {showAlert && <ToastAlert text={showAlert.text} type={showAlert.type} />}
         </div>
 

@@ -22,6 +22,7 @@ export default function Header({ pageActive }) {
                     <i className="fa-solid fa-phone"></i>
                     <i className="fa-solid fa-network-wired"></i>
                     <i className="fa-solid fa-gears"></i>
+                    <i className="fa-solid fa-right-from-bracket"></i>
                 </ul>
                 <div className="header-menu">
                     <div className="header-logo">
@@ -37,6 +38,7 @@ export default function Header({ pageActive }) {
                         <li className="header-menuListIten" onClick={() => location.href = '/ramais'}><i className="fa-solid fa-caret-right"></i>Ramais</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/sites'}><i className="fa-solid fa-caret-right"></i>Sites</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/config'}><i className="fa-solid fa-caret-right"></i>Configurações</li>
+                        <li className="header-menuListIten" onClick={() => location.href = '/'} style={{margin: 'auto 0 0 0'}}><i className="fa-solid fa-caret-right"></i>Logout</li>
                     </ul>
                 </div>
             </header>

@@ -77,7 +77,7 @@ header:hover .header-menu {
 
 .header-menuList {
     width: 100%;
-    height: auto;
+    height: max-content;
     display: flex;
     flex-direction: column;
     gap: 14px;

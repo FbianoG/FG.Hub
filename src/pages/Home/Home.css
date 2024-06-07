@@ -87,7 +87,7 @@
 }
 
 .home form button {
-    margin: 20px 0 0;
+    margin: 20px 0 10px;
     background: var(--color-secundary);
     border: none;
     outline: none;
@@ -106,4 +106,13 @@
         color: var(--color-secundary);
     }
 
+}
+
+.home form span {
+    color: #444;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
+    }
 }
