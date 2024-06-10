@@ -53,14 +53,14 @@ export default function Home({ func }) {
     return (
         <div className="home">
             <div className="home__content">
-                <h1>FG.Torrent</h1>
+                <h1>FG.Syncer</h1>
                 <h2>Simplificando o processo hospitalar</h2>
                 <p>Nosso compromisso é simplificar a admissão hospitalar. Centralizamos informações críticas, automatizando guias e aprimorando a eficiência operacional para tornar sua experiência mais conveniente e eficaz.</p>
                 <img src="/undraw_selected_box_09k4 (1).svg" alt='' />
                 <span>Desenvolvido por: Fabiano Gonçalves</span>
             </div>
             {!create && <form onSubmit={handleSubmit(login)}>
-                <h3>FG.Torrent</h3>
+                <h3>Login</h3>
                 <label htmlFor=''>Login</label>
                 <input type='text' {...register('username')} />
                 <label htmlFor=''>Senha</label>
@@ -70,7 +70,7 @@ export default function Home({ func }) {
             </form>}
 
             {create && <form onSubmit={handleSubmit(createUser)}>
-                <h3>FG.Torrent</h3>
+                <h3>Criar Conta</h3>
                 <label htmlFor=''>Login</label>
                 <input type='text' {...register('username')} required />
                 <label htmlFor=''>Senha</label>
