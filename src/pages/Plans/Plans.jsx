@@ -22,7 +22,7 @@ export default function Plans() {
         if (timeoutId.current) clearTimeout(timeoutId.current)
         const copyText = text.target.textContent
         navigator.clipboard.writeText(copyText)
-        setShowAlert({ text: `Texto copiado '${copyText}'`, type: 'alert' })
+        setShowAlert({ text: `Texto copiado '${copyText}'`, type: 'alert', title: 'Copiado' })
         timeoutId.current = setTimeout(() => setShowAlert(false), 6000)
     }
 
@@ -62,7 +62,7 @@ export default function Plans() {
                     {FindPlans?.length > 0 && FindPlans.map(element => <CardPlans key={element._id} plan={element} copyText={copyText} selectPlan={selectPlan} />)}
                     {!FindPlans && <Loading />}
                 </div>
-                {showAlert && <ToastAlert text={showAlert.text} type={showAlert.type} />}
+                {showAlert && <ToastAlert data={showAlert} />}
                 {showModal && <Modal dataPlan={DataPlan} setShowModal={setShowModal} />}
             </div>
         </>

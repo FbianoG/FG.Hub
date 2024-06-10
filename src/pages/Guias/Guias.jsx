@@ -13,6 +13,7 @@ export default function Guias({ pageActive }) {
 
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
     const [typeGuia, setTypeGuia] = useState('int')
+    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Internção')
 
     const [tussField1, setTussField1] = useState(false)
     const [tussField2, setTussField2] = useState(false)
@@ -67,15 +68,26 @@ export default function Guias({ pageActive }) {
         window.scrollTo(0, 0)
     }
 
+    const [optionsGuia, setOptionsGuia] = useState(false)
+
+    function changeGuia() {
+
+    }
+
     return (
         <>
             <Header />
             <div className="content">
                 <h1 className='title'>Gerar Guias</h1>
-                <select className="guias__typeGuia" onChange={(e) => setTypeGuia(e.target.value)}>
-                    <option value="int">Guia Internação</option>
-                    <option value="sadt">Guia Sadt</option>
-                </select>
+                <div className="guias__typeGuia" onMouseLeave={() => setOptionsGuia(false)} >
+                    <span className="guias__typeGuia-title">{textTypeGuia}</span>
+                    <i className="fa-solid fa-caret-down" onClick={() => setOptionsGuia(true)}></i>
+                    {optionsGuia && <div className="typeGuia__options" >
+                        <span className="typeGuia__options-iten" onClick={() => { setTextTypeGuia('Guia de Internação'), setTypeGuia('int') }}>Guia de Internação</span>
+                        <span className="typeGuia__options-iten" onClick={() => { setTextTypeGuia('Guia Sadt'), setTypeGuia('sadt') }}>Guia Sadt</span>
+                    </div>}
+                </div>
+
                 {typeGuia === 'int' &&
                     <form className="formContainer-guia" onSubmit={handleSubmit(createGuia)}>
                         <fieldset>
@@ -264,7 +276,7 @@ export default function Guias({ pageActive }) {
                         <Guia data={dataGuia} func={{ setGuiaActive }} />
                     </div>
                 }
-            </div>
+            </div >
 
         </>
     )

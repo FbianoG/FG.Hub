@@ -1,28 +1,17 @@
 import './ToastAlert.css'
 
-export default function ToastAlert(props) {
+export default function ToastAlert({data}) {
     //  recebe title e type
-    let toastBg
-    let title
-    if (props.type === 'success') {
-        toastBg = { background: 'mediumseagreen' }
-        title = 'Sucesso'
-    }
-    else if (props.type === 'error') {
-        toastBg = { background: '#c53030' }
-        title = 'Erro'
-    }
-    else if (props.type === 'alert') {
-        toastBg = { background: '#416bc9' }
-        title = 'Alerta'
-    }
+
 
     return (
-        <div className='toastAlert' style={toastBg}>
-            <i className='fa-solid fa-circle-exclamation toastAlert-icon'></i>
+        <div className='toastAlert'>
+            {data.type === 'error' && <i className="fa-regular fa-circle-xmark toastAlert-icon" style={{ background: '#c53030' }}></i>}
+            {data.type === 'alert' && <i className='fa-solid fa-circle-exclamation toastAlert-icon' style={{ background: '#416bc9' }}></i>}
+            {data.type === 'success' && <i className="fa-regular fa-circle-check toastAlert-icon" style={{ background: 'mediumseagreen' }}></i>}
             <div className='toastAlert-data'>
-                <h3 className='toastAlert-title'>{title}</h3>
-                <span className='toastAlert-text'>{props.text}</span>
+                <h3 className='toastAlert-title'>{data.title}</h3>
+                <span className='toastAlert-text'>{data.text}</span>
             </div>
         </div >
     )

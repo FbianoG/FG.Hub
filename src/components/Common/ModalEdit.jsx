@@ -7,12 +7,14 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 import { useForm } from "react-hook-form";
+import { useState } from 'react';
 
 export default function ModalEdit({ data, type, func }) {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
-    // console.log(watch())
+    const [loading, setLoading] = useState(false)
+
 
     const uploadTermFirebase = async (file, name) => {
         try {
@@ -23,38 +25,42 @@ export default function ModalEdit({ data, type, func }) {
             const downloadURL = await getDownloadURL(snapshot.ref)
             return downloadURL
         } catch (error) {
-            console.log(error);
+            console.error(error)
             throw new Error('Arquivo não carregado corretamente.')
         }
     }
 
     // Planos
     async function createPlan(dataForm) {
+        setLoading(true)
         try {
             const response = await CreatePlan(dataForm)
             func.setShowAlert({ type: 'success', text: 'Plano criado!' })
             func.setModalEdit(false)
-            func.loadPlans()
+            func.getData('plans')
         } catch (error) {
             console.error(error)
             func.setShowAlert({ type: 'error', text: error.message })
         } finally {
             setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setLoading(false)
         }
     }
 
     async function updatePlan(dataForm) {
         dataForm._id = data._id
+        setLoading(true)
         try {
             const response = await UpdatePlan(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadPlans()
+            func.getData('plans')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
             setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setLoading(false)
         }
     }
 
@@ -62,6 +68,7 @@ export default function ModalEdit({ data, type, func }) {
     async function createTerm(dataForm) {
         const file = dataForm.file[0]
         const name = dataForm.name
+        setLoading(true)
         try {
             if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
             if (!file) throw new Error('É necessário um arquivo PDF.')
@@ -73,14 +80,15 @@ export default function ModalEdit({ data, type, func }) {
             dataForm.src = urlImg
             dataForm.srcToken = urlToken
             const response = await CreateTerm(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadTerms()
+            func.getData('terms')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error.message })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
@@ -88,6 +96,7 @@ export default function ModalEdit({ data, type, func }) {
         dataForm._id = data._id
         const file = dataForm.file[0]
         const name = dataForm.name
+        setLoading(true)
         try {
             if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
             if (file) {
@@ -100,96 +109,107 @@ export default function ModalEdit({ data, type, func }) {
                 dataForm.srcToken = urlToken
             }
             const response = await UpdateTerm(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadTerms()
+            func.getData('terms')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error.message })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
 
     // Ramais
     async function createRamal(dataForm) {
+        setLoading(true)
         try {
             const response = await CreateRamal(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadRamais()
+            func.getData('ramais')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error.message })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
     async function updateRamal(dataForm) {
         dataForm._id = data._id
+        setLoading(true)
         try {
             const response = await UpdateRamal(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadRamais()
+            func.getData('ramais')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error.message })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
 
     // Sites
     async function createSite(dataForm) {
+        setLoading(true)
         try {
             const response = await CreateSite(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadSites()
+            func.getData('sites')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error.message })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
     async function updateSite(dataForm) {
         dataForm._id = data._id
+        setLoading(true)
         try {
             const response = await UpdateSite(dataForm)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            func.loadSites()
+            func.getData('sites')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
     // Deletar
     async function delIten(exType) {
         if (!window.confirm('Você tem certeza que deseja excluir este item?')) return
+        setLoading(true)
         try {
             const response = await DeleteIten(exType, data._id)
-            func.setShowAlert({ type: 'success', text: response.message })
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
-            if (exType === 'plan') func.loadPlans()
-            else if (exType === 'term') func.loadTerms()
-            else if (exType === 'ramal') func.loadRamais()
-            else if (exType === 'site') func.loadPlans()
+            if (exType === 'plan') func.getData('plans')
+            else if (exType === 'term') func.getData('terms')
+            else if (exType === 'ramal') func.getData('ramais')
+            else if (exType === 'site') func.getData('sites')
 
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', text: error })
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
         } finally {
-            setTimeout(() => { func.setShowAlert(false) }, 5000);
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
         }
     }
 
@@ -255,9 +275,17 @@ export default function ModalEdit({ data, type, func }) {
                     <label htmlFor=''>Observação:</label>
                     <textarea defaultValue={data.data.obs}  {...register('data.obs')}></textarea>
                     <div className="modelEdit__content-groupBtn">
-                        <button type='button' onClick={() => delIten('plan')}>Excluir</button>
-                        <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
-                        <button type='submit'>Atualizar</button>
+                        {loading && <>
+                            <button disabled></button>
+                            <button disabled></button>
+                            <button disabled>Aguarde...</button>
+
+                        </>}
+                        {!loading && <>
+                            <button type='button' onClick={() => delIten('plan')}>Excluir</button>
+                            <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
+                            <button type='submit'>Atualizar</button>
+                        </>}
                     </div>
                 </form>
             }
@@ -300,9 +328,17 @@ export default function ModalEdit({ data, type, func }) {
                     <input type='file' {...register('file')} />
 
                     <div className="modelEdit__content-groupBtn">
-                        <button type='button' onClick={() => delIten('term')}>Excluir</button>
-                        <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
-                        <button type='submit'>Atualizar</button>
+                        {loading && <>
+                            <button disabled></button>
+                            <button disabled></button>
+                            <button disabled>Aguarde...</button>
+
+                        </>}
+                        {!loading && <>
+                            <button type='button' onClick={() => delIten('term')}>Excluir</button>
+                            <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
+                            <button type='submit'>Atualizar</button>
+                        </>}
                     </div>
                 </form>
             }
@@ -331,15 +367,20 @@ export default function ModalEdit({ data, type, func }) {
                     <input type='text' defaultValue={data.ramal}  {...register('ramal')} />
 
                     <div className="modelEdit__content-groupBtn">
-                        <button type='button' onClick={() => delIten('ramal')}>Excluir</button>
-                        <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
-                        <button type='submit'>Atualizar</button>
+                        {loading && <>
+                            <button disabled></button>
+                            <button disabled></button>
+                            <button disabled>Aguarde...</button>
+
+                        </>}
+                        {!loading && <>
+                            <button type='button' onClick={() => delIten('ramal')}>Excluir</button>
+                            <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
+                            <button type='submit'>Atualizar</button>
+                        </>}
                     </div>
                 </form>
             }
-
-
-
 
             {/* Sites */}
             {type === 'createSite' &&
@@ -368,9 +409,17 @@ export default function ModalEdit({ data, type, func }) {
                     <label htmlFor=''>Link Imagem:</label>
                     <input type='text' defaultValue={data.src} {...register('src')} />
                     <div className="modelEdit__content-groupBtn">
-                        <button type='button' onClick={() => delIten('site')}>Excluir</button>
-                        <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
-                        <button type='submit'>Atualizar</button>
+                        {loading && <>
+                            <button disabled></button>
+                            <button disabled></button>
+                            <button disabled>Aguarde...</button>
+
+                        </>}
+                        {!loading && <>
+                            <button type='button' onClick={() => delIten('site')}>Excluir</button>
+                            <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
+                            <button type='submit'>Atualizar</button>
+                        </>}
                     </div>
                 </form>
             }

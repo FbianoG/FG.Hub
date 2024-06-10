@@ -11,8 +11,6 @@ import Header from '../../components/Shared/Header'
 
 export default function Terms({ }) {
 
-    const [textAlert, setTextAlert] = useState('')
-    const [typeAlert, setTypeAlert] = useState('')
     const [showAlert, setShowAlert] = useState(false)
 
     const [Terms, setTerms] = useState(null)
@@ -29,9 +27,7 @@ export default function Terms({ }) {
                 setTerms(response)
                 setFindTerms(response)
             } catch (error) {
-                setTextAlert(error.message)
-                setTypeAlert('error')
-                setShowAlert(true)
+                setShowAlert({ type: 'error', title: 'Erro', text: error.message })
             }
             setTimeout(() => setShowAlert(false), 6000)
         }
@@ -79,7 +75,7 @@ export default function Terms({ }) {
                 }
             </div>
             {!Terms && <Loading />}
-            {showAlert && <ToastAlert text={textAlert} type={typeAlert} />}
+            {showAlert && <ToastAlert data={showAlert} />}
         </>
     )
 }

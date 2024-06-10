@@ -9,8 +9,6 @@ import Header from '../../components/Shared/Header'
 
 export default function Ramais() {
 
-    const [textAlert, setTextAlert] = useState('')
-    const [typeAlert, setTypeAlert] = useState('')
     const [showAlert, setShowAlert] = useState(false)
     const [ramais, setRamais] = useState(null)
     const [findRamais, setFindRamais] = useState(null)
@@ -22,9 +20,7 @@ export default function Ramais() {
                 setRamais(response)
                 setFindRamais(response)
             } catch (error) {
-                setTextAlert(error.message)
-                setTypeAlert('error')
-                setShowAlert(true)
+                setShowAlert({ type: 'error', title: 'Error', text: error.message })
             }
             setTimeout(() => setShowAlert(false), 6000)
         }
@@ -62,7 +58,7 @@ export default function Ramais() {
                 }
             </div>
             {!ramais && <Loading />}
-            {showAlert && <ToastAlert text={textAlert} type={typeAlert} />}
+            {showAlert && <ToastAlert data={showAlert} />}
         </>
     )
 }

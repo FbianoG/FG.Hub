@@ -5,76 +5,39 @@ import { GetPlans, GetRamais, GetSites, GetTerms } from '../../api/getApi'
 import ModalEdit from '../../components/Common/ModalEdit'
 import ToastAlert from '../../components/Common/ToastAlert'
 import Header from '../../components/Shared/Header'
+import Loading from '../../components/Common/Loading'
 
 export default function Config() {
-
-    const [plans, setPlans] = useState(null)
-    const [terms, setTerms] = useState(null)
-    const [ramais, setRamais] = useState(null)
-    const [sites, setSites] = useState(null)
 
     const [modalEdit, setModalEdit] = useState(false)
     const [typeModal, setTypeModal] = useState('')
     const [element, setElement] = useState(null)
 
     const [showAlert, setShowAlert] = useState(false)
+    const [loading, setLoading] = useState(false)
 
-    function resetSets() {
-        setPlans(null)
-        setTerms(null)
-        setRamais(null)
-        setSites(null)
-    }
+    const [data, setData] = useState(null) // Conteudo que irá carregar (planos, termos, etc.)
+    const [typeData, setTypeData] = useState(null) // Tipo de conteudo que irá carregar (planos, termos, etc.)
 
-    async function loadPlans() {
-        resetSets()
+
+    async function getData(e) {
+        setTypeData(e)
+        setData(null)
+        setLoading(true)
+        let response
         try {
-            const response = await GetPlans()
-            setPlans(response)
+            if (e === 'plans') { response = await GetPlans(); setData(response) }
+            else if (e === 'terms') { response = await GetTerms(); setData(response) }
+            else if (e === 'ramais') { response = await GetRamais(); setData(response) }
+            else if (e === 'sites') { response = await GetSites(); setData(response) }
         } catch (error) {
             console.log(error)
-            setShowAlert({ text: error.message, type: 'error' })
+            setShowAlert({ type: 'error', title: 'Erro', text: error.message, })
+        } finally {
+            setLoading(false)
+            setTimeout(() => setShowAlert(false), 7000)
         }
-        setTimeout(() => setShowAlert(false), 6000)
     }
-
-    async function loadTerms() {
-        resetSets()
-        try {
-            const response = await GetTerms()
-            setTerms(response)
-        } catch (error) {
-            console.log(error)
-            setShowAlert({ text: error.message, type: 'error' })
-        }
-        setTimeout(() => setShowAlert(false), 6000)
-    }
-
-    const loadRamais = async () => {
-        resetSets()
-        try {
-            const response = await GetRamais()
-            setRamais(response)
-        } catch (error) {
-            console.log(error)
-            setShowAlert({ text: error.message, type: 'error' })
-        }
-        setTimeout(() => setShowAlert(false), 6000)
-    }
-
-    async function loadSites() {
-        resetSets()
-        try {
-            const response = await GetSites()
-            setSites(response)
-        } catch (error) {
-            console.log(error)
-            setShowAlert({ text: error.message, type: 'error' })
-        }
-        setTimeout(() => setShowAlert(false), 6000)
-    }
-
-
 
 
     return (
@@ -83,12 +46,12 @@ export default function Config() {
             <div className="content">
                 <h1 className="title">Configurações</h1>
                 <div className="filterGroup">
-                    <button onClick={loadPlans}>Planos <i className="fa-solid fa-sliders"></i></button>
-                    <button onClick={loadTerms}>Termos <i className="fa-solid fa-sliders"></i></button>
-                    <button onClick={loadRamais}>Ramais  <i className="fa-solid fa-sliders"></i></button>
-                    <button onClick={loadSites}>Sites <i className="fa-solid fa-sliders"></i></button>
+                    <button onClick={() => getData('plans')}>Planos <i className="fa-solid fa-sliders"></i></button>
+                    <button onClick={() => getData('terms')}>Termos <i className="fa-solid fa-sliders"></i></button>
+                    <button onClick={() => getData('ramais')}>Ramais  <i className="fa-solid fa-sliders"></i></button>
+                    <button onClick={() => getData('sites')}>Sites <i className="fa-solid fa-sliders"></i></button>
                 </div>
-                {plans &&
+                {typeData === 'plans' &&
                     <>
                         <div className="group__legends">
                             <span>Plano</span>
@@ -99,7 +62,7 @@ export default function Config() {
                             <button title='Adicionar Plano' onClick={() => { setTypeModal('createPlan'), setModalEdit(true) }}><i className="fa-solid fa-plus"></i></button>
                         </div>
                         <ul className='group__list'>
-                            {plans && plans.map(element => (
+                            {data && data.map(element => (
                                 <li key={element._id} className='group__iten'>
                                     <span>{element.name}</span>
                                     <span>{element.create.slice(0, 10).split('-').reverse().join('/')}</span>
@@ -110,9 +73,10 @@ export default function Config() {
                                 </li>
                             ))}
                         </ul >
+                        {data?.length === 0 && <h3 style={{ margin: '0 auto', color: '#444' }}>Não há dados cadastrados no banco de dados!</h3>}
                     </>
                 }
-                {terms &&
+                {typeData === 'terms' &&
                     <>
                         <div className="group__legends">
                             <span>Nome</span>
@@ -122,7 +86,7 @@ export default function Config() {
                             <button title='Adicionar Arquivo' onClick={() => { setTypeModal('createTerm'), setModalEdit(true) }}><i className="fa-solid fa-plus"></i></button>
                         </div>
                         <ul className='group__list'>
-                            {terms && terms.map(element => (
+                            {data && data.map(element => (
                                 <li key={element._id} className='group__iten'>
                                     <span>{element.name}</span>
                                     <span>{element.create.slice(0, 10).split('-').reverse().join('/')}</span>
@@ -132,9 +96,10 @@ export default function Config() {
                                 </li>
                             ))}
                         </ul >
+                        {data?.length === 0 && <h3 style={{ margin: '0 auto', color: '#444' }}>Não há dados cadastrados no banco de dados!</h3>}
                     </>
                 }
-                {ramais &&
+                {typeData === 'ramais' &&
                     <>
                         <div className="group__legends">
                             <span>Setor</span>
@@ -144,7 +109,7 @@ export default function Config() {
                             <button title='Adicionar Ramal' onClick={() => { setTypeModal('createRamal'), setModalEdit(true) }}><i className="fa-solid fa-plus"></i></button>
                         </div>
                         <ul className='group__list'>
-                            {ramais && ramais.map(element => (
+                            {data && data.map(element => (
                                 <li key={element._id} className='group__iten'>
                                     <span>{element.setor}</span>
                                     <span>{element.create.slice(0, 10).split('-').reverse().join('/')}</span>
@@ -154,9 +119,10 @@ export default function Config() {
                                 </li>
                             ))}
                         </ul >
+                        {data?.length === 0 && <h3 style={{ margin: '0 auto', color: '#444' }}>Não há dados cadastrados no banco de dados!</h3>}
                     </>
                 }
-                {sites &&
+                {typeData === 'sites' &&
                     <>
                         <div className="group__legends">
                             <span>Nome</span>
@@ -166,7 +132,7 @@ export default function Config() {
                             <button title='Adicionar Site' onClick={() => { setTypeModal('createSite'), setModalEdit(true) }}><i className="fa-solid fa-plus"></i></button>
                         </div>
                         <ul className='group__list'>
-                            {sites && sites.map(element => (
+                            {data && data.map(element => (
                                 <li key={element._id} className='group__iten'>
                                     <span>{element.name}</span>
                                     <span>{element.create.slice(0, 10).split('-').reverse().join('/')}</span>
@@ -176,25 +142,14 @@ export default function Config() {
                                 </li>
                             ))}
                         </ul >
+                        {data?.length === 0 && <h3 style={{ margin: '0 auto', color: '#444' }}>Não há dados cadastrados no banco de dados!</h3>}
                     </>
                 }
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {modalEdit && <ModalEdit func={{ setModalEdit, setShowAlert, loadPlans, loadRamais, loadTerms, loadSites }} data={element} type={typeModal} />}
-            {showAlert && <ToastAlert text={showAlert.text} type={showAlert.type} />}
+            {loading && <Loading />}
+            {modalEdit && <ModalEdit func={{ setModalEdit, setShowAlert, getData }} data={element} type={typeModal} />}
+            {showAlert && <ToastAlert data={showAlert} />}
         </>
     )
 }

@@ -17,9 +17,7 @@ export default function Sites() {
             const response = await GetSites()
             setSites(response)
         } catch (error) {
-            setTextAlert(error.message)
-            setTypeAlert('error')
-            setShowAlert(true)
+            setShowAlert({ type: 'error', title: 'Error', text: error.message })
         }
         setTimeout(() => setShowAlert(false), 6000)
     }
@@ -42,7 +40,7 @@ export default function Sites() {
             </div>
 
             {!sites && <Loading />}
-            {showAlert && <ToastAlert text={textAlert} type={typeAlert} />}
+            {showAlert && <ToastAlert data={showAlert} />}
         </>
     )
 }
