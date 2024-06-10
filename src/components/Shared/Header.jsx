@@ -7,21 +7,21 @@ export default function Header({ pageActive }) {
 
     const [showMenu, setShowMenu] = useState(false)
 
-
-
+    const route = window.location.pathname
 
     return (
         <>
             <header>
                 <ul className='header-listIcon'>
-                    <i className="fa-solid fa-book-medical active"></i>
-                    <i className="fa-solid fa-file-medical"></i>
-                    <i className="fa-solid fa-file-waveform"></i>
+                    <span>FG</span>
+                    <i className="fa-solid fa-notes-medical" id={route == '/planos' ? 'active' : ''}></i>
+                    <i className="fa-solid fa-suitcase-medical" id={route == '/termos' ? 'active' : ''}></i>
+                    <i className="fa-solid fa-file-waveform" id={route == '/guias' ? 'active' : ''}></i>
                     {/* <i className="fa-solid fa-hospital-user"></i> */}
-                    <i className="fa-solid fa-tags"></i>
-                    <i className="fa-solid fa-phone"></i>
-                    <i className="fa-solid fa-network-wired"></i>
-                    <i className="fa-solid fa-gears"></i>
+                    <i className="fa-solid fa-address-card" id={route == '/etiqueta' ? 'active' : ''}></i>
+                    <i className="fa-solid fa-phone" id={route == '/ramais' ? 'active' : ''}></i>
+                    <i className="fa-solid fa-network-wired" id={route == '/sites' ? 'active' : ''}></i>
+                    <i className="fa-solid fa-gears" id={route == '/config' ? 'active' : ''}></i>
                     <i className="fa-solid fa-right-from-bracket"></i>
                 </ul>
                 <div className="header-menu">
@@ -38,7 +38,7 @@ export default function Header({ pageActive }) {
                         <li className="header-menuListIten" onClick={() => location.href = '/ramais'}><i className="fa-solid fa-caret-right"></i>Ramais</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/sites'}><i className="fa-solid fa-caret-right"></i>Sites</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/config'}><i className="fa-solid fa-caret-right"></i>Configurações</li>
-                        <li className="header-menuListIten" onClick={() => location.href = '/'} style={{margin: 'auto 0 0 0'}}><i className="fa-solid fa-caret-right"></i>Logout</li>
+                        <li className="header-menuListIten" onClick={() => location.href = '/'} style={{ margin: 'auto 0 0 0'}}><i className="fa-solid fa-caret-right"></i>Logout</li>
                     </ul>
                 </div>
             </header>

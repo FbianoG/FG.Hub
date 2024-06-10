@@ -14,7 +14,7 @@ header ul {
 .header-listIcon {
     height: 100%;
     width: 100%;
-    padding: 100px 0;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,6 +24,20 @@ header ul {
 
 }
 
+.header-listIcon span {
+    width: 40px;
+    height: 40px;
+    margin: 0 0 10px;
+    background: #fffd;
+    border-radius: 10px;
+    color: var(--color-primary);
+    font-weight: 600;
+    border: 2px solid var(--color-tertiary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .header-listIcon i {
     width: 40px;
     padding: 8px 0;
@@ -31,7 +45,7 @@ header ul {
     color: #eee;
 }
 
-.header-listIcon .active {
+.header-listIcon #active {
     background: #fff3;
     border-radius: 10px;
 }

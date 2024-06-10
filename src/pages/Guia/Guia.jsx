@@ -8,6 +8,8 @@ export default function Guia({ data, func }) {
         else return '225125'
     }
 
+    console.log(data)
+
     return (
         <>
             <button className="btn_backGuia" onClick={() => func.setGuiaActive(false)}>Voltar</button>
@@ -59,20 +61,20 @@ export default function Guia({ data, func }) {
                         <p id="des5">{data.proced6}</p>
                     </div>
                     <div className="quantidade">
-                        <p >{data.qtd1?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd2?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd3?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd4?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd5?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd6?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd1 === '' ? '' : data.qtd1?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd2 === '' ? '' : data.qtd2?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd3 === '' ? '' : data.qtd3?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd4 === '' ? '' : data.qtd4?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd5 === '' ? '' : data.qtd5?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd6 === '' ? '' : data.qtd6?.toString().padStart(2, '0')}</p>
                     </div>
                     <div className="quantidadeAut">
-                        <p >{data.qtd1?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd2?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd3?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd4?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd5?.toString().padStart(2, '0')}</p>
-                        <p >{data.qtd6?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd1 === '' ? '' : data.qtd1?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd2 === '' ? '' : data.qtd2?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd3 === '' ? '' : data.qtd3?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd4 === '' ? '' : data.qtd4?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd5 === '' ? '' : data.qtd5?.toString().padStart(2, '0')}</p>
+                        <p >{data.qtd6 === '' ? '' : data.qtd6?.toString().padStart(2, '0')}</p>
                     </div>
                 </div>
                 <p id="diariaAut">{data.daily}</p>

@@ -13,7 +13,7 @@ export default function Guias({ pageActive }) {
 
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
     const [typeGuia, setTypeGuia] = useState('int')
-    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Internção')
+    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Internação')
 
     const [tussField1, setTussField1] = useState(false)
     const [tussField2, setTussField2] = useState(false)
@@ -83,8 +83,8 @@ export default function Guias({ pageActive }) {
                     <span className="guias__typeGuia-title">{textTypeGuia}</span>
                     <i className="fa-solid fa-caret-down" onClick={() => setOptionsGuia(true)}></i>
                     {optionsGuia && <div className="typeGuia__options" >
-                        <span className="typeGuia__options-iten" onClick={() => { setTextTypeGuia('Guia de Internação'), setTypeGuia('int') }}>Guia de Internação</span>
-                        <span className="typeGuia__options-iten" onClick={() => { setTextTypeGuia('Guia Sadt'), setTypeGuia('sadt') }}>Guia Sadt</span>
+                        <span className="typeGuia__options-iten" onClick={() => { setTextTypeGuia('Guia de Internação'), setTypeGuia('int'), setOptionsGuia(false) }}>Guia de Internação</span>
+                        <span className="typeGuia__options-iten" onClick={() => { setTextTypeGuia('Guia Sadt'), setTypeGuia('sadt'), setOptionsGuia(false) }}>Guia Sadt</span>
                     </div>}
                 </div>
 
@@ -230,12 +230,14 @@ export default function Guias({ pageActive }) {
                             <input type='text' {...register("doctor")} />
                             <label htmlFor=''>CRM do Médico:</label>
                             <input type='text' {...register("crm")} />
+                            <label htmlFor=''>Indicação Clínica:</label>
+                            <input type='text' {...register("ind")} />
                             <label htmlFor=''>Data da Solicitação:</label>
                             <input type='date' {...register("dateSol")} />
                             {/* <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} /> */}
-                            <div className="formField__data">
-                            </div>
+                            {/* <div className="formField__data">
+                            </div> */}
                         </fieldset>
                         <fieldset>
                             <h3 className="formField-title">Procedimentos</h3>

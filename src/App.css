@@ -7,7 +7,7 @@
 }
 
 .title {
-  width: fit-content;
+  width: max-content;
   margin: 0 auto;
   color: var(--color-secundary);
   font-size: 32px;
