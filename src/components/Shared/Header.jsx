@@ -26,8 +26,8 @@ export default function Header({ pageActive }) {
                 </ul>
                 <div className="header-menu">
                     <div className="header-logo">
-                        FG.Syncer
-                        <span className='header-logoDetails'>Fast Guidance Syncer</span>
+                        FG.Hub
+                        <span className='header-logoDetails'>Fast Guidance Hub</span>
                     </div>
                     <ul className='header-menuList'>
                         <li className="header-menuListIten" onClick={() => location.href = '/planos'}><i className="fa-solid fa-caret-right"></i>Planos e Convênios</li>
