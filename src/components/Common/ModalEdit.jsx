@@ -235,7 +235,7 @@ export default function ModalEdit({ data, type, func }) {
                     <label htmlFor=''>E-mail:</label>
                     <input type='text' {...register('data.email')} />
                     <label htmlFor=''>Autorização:</label>
-                    <input type='text'{...register('data.aut')} />
+                    <input type='text'{...register('data.att')} />
                     <label htmlFor=''>Requer Guia:</label>
                     <input type='text' {...register('data.guia')} />
                     <label htmlFor=''>Requer Senha:</label>
