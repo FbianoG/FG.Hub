@@ -53,9 +53,10 @@ export default function Home({ func }) {
         }
     }
 
+
     return (
         <div className="home">
-            <div className="home__content">
+            <div className="home__content" >
                 <h1>FG.Hub</h1>
                 <h2>Simplificando o processo hospitalar</h2>
                 <p>Nosso compromisso é simplificar a admissão hospitalar. Centralizamos informações críticas, automatizando guias e aprimorando a eficiência operacional para tornar sua experiência mais conveniente e eficaz.</p>

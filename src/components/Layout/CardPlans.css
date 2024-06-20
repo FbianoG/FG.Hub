@@ -58,3 +58,10 @@
 .cardPlan-buttons i:hover {
     opacity: 0.7;
 }
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .cardPlan {
+        width: 100%;
+    }
+}

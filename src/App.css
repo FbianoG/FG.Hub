@@ -13,3 +13,13 @@
   font-size: 32px;
   font-weight: 500;
 }
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+
+  .content {
+    padding: 20px 5%;
+    width: 100%;
+    overflow: hidden;
+  }
+}

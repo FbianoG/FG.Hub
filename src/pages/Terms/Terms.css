@@ -94,3 +94,26 @@
     color: var(--color-tertiary);
     font-size: 18px;
 }
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .terms__list-legend {
+        width: 100%;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: 110px 120px 50px;
+    }
+
+    .ramais__list {
+        max-width: 100%;
+    }
+
+    .terms__iten {
+        grid-template-columns: 110px 120px 50px;
+        gap: 5px;
+        height: auto;
+        min-height: 60px;
+        align-items: center;
+    }
+}

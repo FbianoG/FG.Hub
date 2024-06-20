@@ -5,3 +5,11 @@
     flex-wrap: wrap;
     gap: 40px 20px;
 }
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .listPlans {
+        padding: 0;
+        gap: 10px;
+    }
+}
