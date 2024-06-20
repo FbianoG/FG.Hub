@@ -4,24 +4,32 @@ export default function GuiaSadt({ data, func }) {
 
     return (
         <>
-            <button className="btn_backGuia" onClick={() => func.setGuiaActive(false)}>Voltar</button>
+            <div className="btn_backGuia">
+                <button onClick={() => window.print()}>Imprimir</button>
+                <button onClick={() => func.setGuiaActive(false)}>Voltar</button>
+            </div>
             <img className='guiasadt' src="/guiassadt.png" alt="" style={{ background: '#fff' }} />
             <div className="sadt__content">
                 <div className="logo__imageSadt">
-                <img src={`./plansLogo/${data.plan}.png`} alt='Logo do plano de saúde' />
+                    <img src={`./plansLogo/${data.plan}.png`} alt='Logo do plano de saúde' />
                 </div>
                 <div className="contant__patient">
                     <p>{data.planNumber}</p>
                     <p>{data.name}</p>
+                </div>
+                <div className="content__contrat">
+                    <p>{localStorage.getItem('Cnpj')}</p>
+                    <p >{localStorage.getItem('Name')}</p>
                 </div>
                 <div className="content__doctor">
                     <p>{data.doctor}</p>
                     <p>CRM</p>
                     <p>{data.crm}</p>
                     <p>RJ</p>
-                    <p>225225</p>
+                    <p>{data.cbo}</p>
                 </div>
                 <div className="content__data">
+                    <p>{data.carater}</p>
                     <p>{data.dateSol.split('-').reverse().join('/')}</p>
                     <p>{data.ind}</p>
                 </div>
@@ -54,6 +62,11 @@ export default function GuiaSadt({ data, func }) {
                     <p >{data.tuss5}</p>
                     <p >{data.proced5}</p>
                     <p >{data.qtd5 === '' ? '' : data.qtd5?.toString().padStart(2, '0')}</p>
+                </div>
+                <div className="content__contrat">
+                    <p>{localStorage.getItem('Cnpj')}</p>
+                    <p >{localStorage.getItem('Name')}</p>
+                    <p >{localStorage.getItem('Cnes')}</p>
                 </div>
 
             </div>

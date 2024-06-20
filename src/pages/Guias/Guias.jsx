@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react'
 import './Guias.css'
 
+import { GetDoctors } from '../../api/getApi.js'
+
 import React from 'react';
-import axios from 'axios';
 import tuss from '../../api/tabela_22';
 import Guia from "../Guia/Guia";
 import Header from "../../components/Shared/Header";
@@ -62,16 +63,35 @@ export default function Guias({ pageActive }) {
         }
     }
 
-    function createGuia(e) {
-        setDataGuia(e)
+    async function createGuia(data) {
+        const response = await
+            setDataGuia(data)
         setGuiaActive(true)
         window.scrollTo(0, 0)
     }
 
     const [optionsGuia, setOptionsGuia] = useState(false)
 
-    function changeGuia() {
+    const [doctors, setDoctors] = useState(null)
 
+    async function getDoctors() {
+        try {
+            const response = await GetDoctors()
+            setDoctors(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => { setValue('dateSol', new Date().toISOString().split('T')[0]); getDoctors() }, [])
+
+    const [, set] = useState()
+
+    function selectMed(e) {
+        const findDoctor = doctors.find(element => element._id == e)
+        setValue('doctor', findDoctor.name);
+        setValue('crm', findDoctor.crm);
+        setValue('cbo', findDoctor.cbo);
     }
 
     return (
@@ -122,10 +142,17 @@ export default function Guias({ pageActive }) {
                             <input type='text' {...register("guia")} />
                             <label htmlFor=''>Nº da Senha:</label>
                             <input type='text' {...register("password")} />
+                            <label htmlFor=''>Selecionar Médico:</label>
+                            <select onChange={(e) => selectMed(e.target.value)}>
+                                <option value="" ></option>
+                                {doctors && doctors.map(element => <option value={element._id}>{element.name}</option>)}
+                            </select>
                             <label htmlFor=''>Médico Solicitante:</label>
                             <input type='text' {...register("doctor")} />
                             <label htmlFor=''>CRM do Médico:</label>
                             <input type='text' {...register("crm")} />
+                            <label htmlFor=''>CBO do Médico:</label>
+                            <input type='text' {...register("cbo")} />
                             <label htmlFor=''>Data da Solicitação:</label>
                             <input type='date' {...register("dateSol")} />
                             <label htmlFor=''>Data da Autorização:</label>
@@ -135,6 +162,8 @@ export default function Guias({ pageActive }) {
                         </fieldset>
                         <fieldset>
                             <h3 className="formField-title">Dados da Internação</h3>
+                            <label htmlFor=''>Indicação Clínica:</label>
+                            <input type='text' {...register("ind")} />
                             <label htmlFor=''>Tipo de Internação:</label>
                             <select {...register("type")}>
                                 <option value="1">Clínica</option>
@@ -226,18 +255,36 @@ export default function Guias({ pageActive }) {
                             <input type='text' {...register("guia")} /> */}
                             {/* <label htmlFor=''>Nº da Senha:</label>
                             <input type='text' {...register("password")} /> */}
+
+                            <label htmlFor=''>Selecionar Médico:</label>
+                            <select onChange={(e) => selectMed(e.target.value)}>
+                                <option value="" ></option>
+                                {doctors && doctors.map(element => <option value={element._id}>{element.name}</option>)}
+                            </select>
+
                             <label htmlFor=''>Médico Solicitante:</label>
                             <input type='text' {...register("doctor")} />
                             <label htmlFor=''>CRM do Médico:</label>
                             <input type='text' {...register("crm")} />
-                            <label htmlFor=''>Indicação Clínica:</label>
-                            <input type='text' {...register("ind")} />
+                            <label htmlFor=''>CBO do Médico:</label>
+                            <input type='text' {...register("cbo")} />
+
                             <label htmlFor=''>Data da Solicitação:</label>
-                            <input type='date' {...register("dateSol")} />
+                            <input type='date' {...register("dateSol")} defaultValue={new Date().toISOString().split('T')[0]} />
                             {/* <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} /> */}
                             {/* <div className="formField__data">
                             </div> */}
+                        </fieldset>
+                        <fieldset>
+                            <h3 className="formField-title">Dados da Solicitação</h3>
+                            <label htmlFor=''>Indicação Clínica:</label>
+                            <input type='text' {...register("ind")} />
+                            <label htmlFor=''>Caráter do Procedimento:</label>
+                            <select {...register("carater")} >
+                                <option value="1" >Urgência</option>
+                                <option value="2">Eletiva</option>
+                            </select>
                         </fieldset>
                         <fieldset>
                             <h3 className="formField-title">Procedimentos</h3>

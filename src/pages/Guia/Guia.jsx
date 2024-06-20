@@ -2,17 +2,13 @@ import './Guia.css'
 
 export default function Guia({ data, func }) {
 
-    function chooseCBO() {
-        if (data.type == 3) return '225250'
-        else if (data.type == 4) return '225124'
-        else return '225125'
-    }
-
-    console.log(data)
 
     return (
         <>
-            <button className="btn_backGuia" onClick={() => func.setGuiaActive(false)}>Voltar</button>
+            <div className="btn_backGuia">
+                <button onClick={() => window.print()}>Imprimir</button>
+                <button onClick={() => func.setGuiaActive(false)}>Voltar</button>
+            </div>
             <img src="/guiaint.png" alt="" />
             <div className="dados">
                 <p id="guia">{data.guia}</p>
@@ -20,20 +16,20 @@ export default function Guia({ data, func }) {
                 <p id="senha">{data.password}</p>
                 <p id="carteira">{data.planNumber}</p>
                 <p id="nome">{data.name}</p>
-                <p id="cnpj1">600884855001207</p>
-                <p id="contratado1">CHN - Complexo Hospitalar de Niterói</p>
+                <p id="cnpj1">{localStorage.getItem('Cnpj')}</p>
+                <p id="contratado1">{localStorage.getItem('Name')}</p>
                 <p id="medico">{data.doctor}</p>
                 <p id="conselho">CRM</p>
                 <p id="crm">{data.crm}</p>
                 <p id="uf">RJ</p>
-                <p id="cbo">{chooseCBO()}</p>
-                <p id="cnpj2">123456789</p>
-                <p id="contratado2">CHN - Complexo Hospitalar de Niterói</p>
+                <p id="cbo">{data.cbo}</p>
+                <p id="cnpj2"></p>
+                <p id="contratado2"></p>
                 <p id="carater">{data.carater}</p>
                 <p id="tipo">{data.type}</p>
                 <p id="regime">1</p>
                 <p id="diariaSol">{data.daily}</p>
-                <p id="anexo">Em anexo</p>
+                <p id="anexo">{data.ind}</p>
                 <p id="cid"></p>
                 <div className="tuss">
                     <div className="tabela">
@@ -79,8 +75,8 @@ export default function Guia({ data, func }) {
                 </div>
                 <p id="diariaAut">{data.daily}</p>
                 <p id="leito">{data.typeRoom}</p>
-                <p id="cnpj3">600884855001207</p>
-                <p id="contratado3">CHN - Complexo Hospitalar de Niterói</p>
+                <p id="cnpj3"></p>
+                <p id="contratado3"></p>
                 <p id="dataSol">{data.dateSol.split('-').reverse().join('/')}</p>
                 <div id="borda"></div>
                 <div id="logoImage">

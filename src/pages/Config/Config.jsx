@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Config.css'
 
-import { GetPlans, GetRamais, GetSites, GetTerms } from '../../api/getApi'
+import { GetPlans, GetRamais, GetSites, GetTerms, GetDoctors } from '../../api/getApi'
 import ModalEdit from '../../components/Common/ModalEdit'
 import ToastAlert from '../../components/Common/ToastAlert'
 import Header from '../../components/Shared/Header'
@@ -30,6 +30,7 @@ export default function Config() {
             else if (e === 'terms') { response = await GetTerms(); setData(response) }
             else if (e === 'ramais') { response = await GetRamais(); setData(response) }
             else if (e === 'sites') { response = await GetSites(); setData(response) }
+            else if (e === 'doctors') { response = await GetDoctors(); setData(response) }
         } catch (error) {
             console.log(error)
             setShowAlert({ type: 'error', title: 'Erro', text: error.message, })
@@ -50,6 +51,7 @@ export default function Config() {
                     <button onClick={() => getData('terms')}>Termos <i className="fa-solid fa-sliders"></i></button>
                     <button onClick={() => getData('ramais')}>Ramais  <i className="fa-solid fa-sliders"></i></button>
                     <button onClick={() => getData('sites')}>Sites <i className="fa-solid fa-sliders"></i></button>
+                    <button onClick={() => getData('doctors')}>Médicos <i className="fa-solid fa-sliders"></i></button>
                 </div>
                 {typeData === 'plans' &&
                     <>
@@ -139,6 +141,31 @@ export default function Config() {
                                     <span>{element.update.slice(0, 10).split('-').reverse().join('/')}</span>
                                     <a href={element.web} target='_blank' style={{ gridColumn: 'span 2' }}>{element.web}</a>
                                     <button title='Editar Site' onClick={() => { setTypeModal('editSite'), setModalEdit(true), setElement(element) }} ><i className="fa-solid fa-up-right-from-square"></i></button>
+                                </li>
+                            ))}
+                        </ul >
+                        {data?.length === 0 && <h3 style={{ margin: '0 auto', color: '#444' }}>Não há dados cadastrados no banco de dados!</h3>}
+                    </>
+                }
+                {typeData === 'doctors' &&
+                    <>
+                        <div className="group__legends">
+                            <span>Nome</span>
+                            <span>Criado em</span>
+                            <span>Atualizado</span>
+                            <span >Conselho de Medicina</span>
+                            <span >CBO</span>
+                            <button title='Adicionar Médico' onClick={() => { setTypeModal('createDoctor'), setModalEdit(true) }}><i className="fa-solid fa-plus"></i></button>
+                        </div>
+                        <ul className='group__list'>
+                            {data && data.map(element => (
+                                <li key={element._id} className='group__iten'>
+                                    <span>{element.name}</span>
+                                    <span>{element.create.slice(0, 10).split('-').reverse().join('/')}</span>
+                                    <span>{element.update.slice(0, 10).split('-').reverse().join('/')}</span>
+                                    <span>{element.crm}</span>
+                                    <span>{element.cbo}</span>
+                                    <button title='Editar Médico' onClick={() => { setTypeModal('editDoctor'), setModalEdit(true), setElement(element) }} ><i className="fa-solid fa-up-right-from-square"></i></button>
                                 </li>
                             ))}
                         </ul >

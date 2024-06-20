@@ -3,7 +3,7 @@
     top: 0;
     width: calc(100vw - 90px);
     /* height: 100px; */
-    max-height: 1645px;
+    height: 100%;
     background: #0009;
 
     /* border: 1px solid red; */
@@ -23,8 +23,15 @@
     transform: translate(-50%);
     z-index: 2;
     width: 1360px;
-
     padding: 18px 39px;
+}
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 1450px) {
+    .sadt__content {
+        left: 0px;
+        transform: none;
+    }
 }
 
 .logo__imageSadt {
@@ -45,13 +52,14 @@
     font-size: 15px;
     height: 16px;
     text-transform: capitalize;
+    /* background: rgba(255, 0, 0, 0.671); */
 }
 
 .contant__patient {
     display: grid;
     grid-template-columns: 330px 395px;
     gap: 173px;
-    margin: 0 0 77px;
+    /* margin: 0 0 77px; */
 }
 
 .content__doctor {
@@ -76,11 +84,15 @@
 
 .content__data {
     display: grid;
-    grid-template-columns: 148px 1036px;
-    gap: 11px;
-    margin: 0 0 20px 84px;
+    grid-template-columns: 71px 148px 1036px;
+    gap: 10px;
+    margin: 0px 0 20px 3px;
 
     & p:nth-child(1) {
+        text-align: center;
+    }
+
+    & p:nth-child(2) {
         text-align: center;
     }
 }
@@ -108,6 +120,17 @@
     }
 }
 
+.content__contrat {
+    margin: 35px 0 27px 0;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 235px 905px 120px;
+
+    &:nth-child(3) {
+        grid-template-columns: 235px 1035px;
+    }
+}
+
 
 /* @page {
     size: landscape;
@@ -115,21 +138,19 @@
 
 @media print {
 
-    .content {
-        
-    }
+    .content {}
 
     .papel__sadt {
-        /* page-break-inside: avoid; */
-
-        height: 100%;
-        /* width: 1%; */
-        /* border: 1px solid red; */
-        /* overflow: hidden; */
+        width: 100vw;
+        max-height: 100vh;
     }
 
     .sadt__content {
         width: 100%;
+    }
+
+    .papel__sadt .guiasadt {
+        object-fit: contain;
     }
 
 }

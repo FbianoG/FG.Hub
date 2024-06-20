@@ -11,9 +11,16 @@
 }
 
 .btn_backGuia {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+}
+
+.btn_backGuia button {
     padding: 10px 20px;
     background: var(--color-tertiary);
     color: #fdfdfd;
@@ -29,7 +36,6 @@
         background: #fdfdfd;
         color: var(--color-tertiary);
     }
-
 }
 
 .papel img {
@@ -110,6 +116,8 @@ p#medico {
     position: relative;
     top: 36px;
     width: 310px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 p#conselho {
@@ -313,7 +321,10 @@ p#cid {
 
 
 @media print {
-
+    .btn_backGuia {
+        display: none;
+    }
+    
     .papel {
         margin-left: 0px;
         position: relative;

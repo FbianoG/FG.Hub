@@ -27,6 +27,20 @@ async function CreateUser(dataForm) {
     }
 }
 
+async function EditUser(dataForm) {
+    try {
+        const response = await axios.post(`${UrlBack}/editUser`, { dataForm })
+        return response.data
+    } catch (error) {
+        if (error.response) {
+            if (error.response.status === 401) setTimeout(() => { location.href = '/' }, 4000)
+            throw new Error(error.response.data.message)
+        }
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
 async function GetPlans() {
     try {
         const response = await axios.get(`${UrlBack}/getPlans`)
@@ -72,6 +86,20 @@ async function GetRamais() {
 async function GetSites() {
     try {
         const response = await axios.get(`${UrlBack}/getSites`)
+        return response.data
+    } catch (error) {
+        if (error.response) {
+            if (error.response.status === 401) setTimeout(() => { location.href = '/' }, 4000)
+            throw new Error(error.response.data.message)
+        }
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
+async function GetDoctors() {
+    try {
+        const response = await axios.get(`${UrlBack}/getDoctor`)
         return response.data
     } catch (error) {
         if (error.response) {
@@ -195,6 +223,34 @@ async function UpdateSite(dataForm) {
     }
 }
 
+async function CreateDoctor(dataForm) {
+    try {
+        const response = await axios.post(`${UrlBack}/createDoctor`, { dataForm })
+        return response.data
+    } catch (error) {
+        if (error.response) {
+            if (error.response.status === 401) setTimeout(() => { location.href = '/' }, 4000)
+            throw new Error(error.response.data.message)
+        }
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
+async function UpdateDoctor(dataForm) {
+    try {
+        const response = await axios.put(`${UrlBack}/updateDoctor`, { dataForm })
+        return response.data
+    } catch (error) {
+        if (error.response) {
+            if (error.response.status === 401) setTimeout(() => { location.href = '/' }, 4000)
+            throw new Error(error.response.data.message)
+        }
+        else if (error.request) throw new Error("Error de rede. Tente novamente.")
+        else throw new Error(error.message)
+    }
+}
+
 async function DeleteIten(exType, _id) {
     try {
         console.log(_id)
@@ -210,4 +266,4 @@ async function DeleteIten(exType, _id) {
     }
 }
 
-export { Login, CreateUser, GetPlans, GetTerms, GetRamais, GetSites, CreatePlan, UpdatePlan, CreateTerm, UpdateTerm, CreateRamal, UpdateRamal, CreateSite, UpdateSite, DeleteIten }
+export { Login, CreateUser, EditUser, GetPlans, GetTerms, GetRamais, GetSites, GetDoctors, CreatePlan, UpdatePlan, CreateTerm, UpdateTerm, CreateRamal, UpdateRamal, CreateSite, UpdateSite, CreateDoctor, UpdateDoctor, DeleteIten }

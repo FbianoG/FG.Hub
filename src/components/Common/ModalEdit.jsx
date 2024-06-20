@@ -1,4 +1,4 @@
-import { CreatePlan, CreateRamal, CreateSite, CreateTerm, DeleteIten, UpdatePlan, UpdateRamal, UpdateSite, UpdateTerm } from '../../api/getApi';
+import { CreatePlan, CreateRamal, CreateSite, CreateTerm, CreateDoctor, DeleteIten, UpdatePlan, UpdateRamal, UpdateSite, UpdateTerm, UpdateDoctor } from '../../api/getApi';
 import './ModalEdit.css'
 
 // Firebase
@@ -35,7 +35,7 @@ export default function ModalEdit({ data, type, func }) {
         setLoading(true)
         try {
             const response = await CreatePlan(dataForm)
-            func.setShowAlert({ type: 'success', text: 'Plano criado!' })
+            func.setShowAlert({ type: 'success', text: 'Plano criado!', title: 'Sucesso' })
             func.setModalEdit(false)
             func.getData('plans')
         } catch (error) {
@@ -191,6 +191,40 @@ export default function ModalEdit({ data, type, func }) {
         }
     }
 
+    // Médicos
+    async function createDoctor(dataForm) {
+        setLoading(true)
+        try {
+            const response = await CreateDoctor(dataForm)
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
+            func.setModalEdit(false)
+            func.getData('doctors')
+        } catch (error) {
+            console.error(error)
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
+        } finally {
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
+        }
+    }
+
+    async function updateDoctor(dataForm) {
+        dataForm._id = data._id
+        setLoading(true)
+        try {
+            const response = await UpdateDoctor(dataForm)
+            func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
+            func.setModalEdit(false)
+            func.getData('doctors')
+        } catch (error) {
+            console.error(error)
+            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
+        } finally {
+            setTimeout(() => { func.setShowAlert(false) }, 5000)
+            setLoading(false)
+        }
+    }
+
     // Deletar
     async function delIten(exType) {
         if (!window.confirm('Você tem certeza que deseja excluir este item?')) return
@@ -203,7 +237,7 @@ export default function ModalEdit({ data, type, func }) {
             else if (exType === 'term') func.getData('terms')
             else if (exType === 'ramal') func.getData('ramais')
             else if (exType === 'site') func.getData('sites')
-
+            else if (exType === 'doctor') func.getData('doctors')
         } catch (error) {
             console.error(error)
             func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
@@ -417,6 +451,47 @@ export default function ModalEdit({ data, type, func }) {
                         </>}
                         {!loading && <>
                             <button type='button' onClick={() => delIten('site')}>Excluir</button>
+                            <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
+                            <button type='submit'>Atualizar</button>
+                        </>}
+                    </div>
+                </form>
+            }
+
+            {/* Médicos */}
+            {type === 'createDoctor' &&
+                <form className="modalEdit__content" onSubmit={handleSubmit(createDoctor)}>
+                    <h3 className='modalEdit__content-title'>Adicionar Médico</h3>
+                    <label htmlFor=''>Nome:</label>
+                    <input type='text' {...register('name')} />
+                    <label htmlFor=''>CRM:</label>
+                    <input type='text'  {...register('crm')} />
+                    <label htmlFor=''>CBO:</label>
+                    <input type='text'  {...register('cbo')} />
+                    <div className="modelEdit__content-groupBtn">
+                        <button style={{ display: 'none' }}>Excluir</button>
+                        <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
+                        <button type='submit'>Criar</button>
+                    </div>
+                </form>
+            }
+            {type === 'editDoctor' &&
+                <form className="modalEdit__content" onSubmit={handleSubmit(updateDoctor)}>
+                    <h3 className='modalEdit__content-title'>Editar Médico</h3>
+                    <label htmlFor=''>Nome:</label>
+                    <input type='text' defaultValue={data.name} {...register('name')} />
+                    <label htmlFor=''>CRM:</label>
+                    <input type='text' defaultValue={data.crm}  {...register('crm')} />
+                    <label htmlFor=''>CBO:</label>
+                    <input type='text' defaultValue={data.cbo} {...register('cbo')} />
+                    <div className="modelEdit__content-groupBtn">
+                        {loading && <>
+                            <button disabled></button>
+                            <button disabled></button>
+                            <button disabled>Aguarde...</button>
+                        </>}
+                        {!loading && <>
+                            <button type='button' onClick={() => delIten('doctor')}>Excluir</button>
                             <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
                             <button type='submit'>Atualizar</button>
                         </>}

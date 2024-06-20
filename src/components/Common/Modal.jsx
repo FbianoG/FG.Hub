@@ -7,7 +7,7 @@ export default function Modal({ dataPlan, setShowModal }) {
             <div className="modalContent">
                 <div className="modal__row head">
                     <h2 className="modalContent-title">{dataPlan.name}</h2>
-                    <p className='modalContent-content'>{dataPlan.data.cod}</p>
+                    <p className='modalContent-content'>Cod: {dataPlan.data.cod}</p>
                 </div>
                 <div className="modal__row">
                     <label className="modalContent-subtitle">Telefone</label>

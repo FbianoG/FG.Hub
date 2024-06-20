@@ -18,7 +18,7 @@ export default function Header({ pageActive }) {
                     <i className="fa-solid fa-suitcase-medical" id={route == '/termos' ? 'active' : ''}></i>
                     <i className="fa-solid fa-file-waveform" id={route == '/guias' ? 'active' : ''}></i>
                     {/* <i className="fa-solid fa-hospital-user"></i> */}
-                    <i className="fa-solid fa-address-card" id={route == '/etiqueta' ? 'active' : ''}></i>
+                    {/* <i className="fa-solid fa-address-card" id={route == '/etiqueta' ? 'active' : ''}></i> */}
                     <i className="fa-solid fa-phone" id={route == '/ramais' ? 'active' : ''}></i>
                     <i className="fa-solid fa-network-wired" id={route == '/sites' ? 'active' : ''}></i>
                     <i className="fa-solid fa-gears" id={route == '/config' ? 'active' : ''}></i>
@@ -34,7 +34,7 @@ export default function Header({ pageActive }) {
                         <li className="header-menuListIten" onClick={() => location.href = '/termos'}><i className="fa-solid fa-caret-right"></i>Termos</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/guias'}><i className="fa-solid fa-caret-right"></i>Guias</li>
                         {/* <li className="header-menuListIten" onClick={() => pageActive('')}><i className="fa-solid fa-caret-right"></i>Cadastro</li> */}
-                        <li className="header-menuListIten" onClick={() => location.href = '/etiqueta'}><i className="fa-solid fa-caret-right"></i>Etiqueta</li>
+                        {/* <li className="header-menuListIten" onClick={() => location.href = '/etiqueta'}><i className="fa-solid fa-caret-right"></i>Etiqueta</li> */}
                         <li className="header-menuListIten" onClick={() => location.href = '/ramais'}><i className="fa-solid fa-caret-right"></i>Ramais</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/sites'}><i className="fa-solid fa-caret-right"></i>Sites</li>
                         <li className="header-menuListIten" onClick={() => location.href = '/config'}><i className="fa-solid fa-caret-right"></i>Configurações</li>

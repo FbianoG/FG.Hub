@@ -50,6 +50,13 @@
     grid-template-columns: 1fr;
 }
 
+.modal__row.head p {
+    color: #777;
+    max-height: 150px;
+    overflow: auto;
+    font-weight: 500;
+}
+
 .modalContent-title {
     font-size: 32px;
     color: var(--color-secundary);
@@ -73,7 +80,7 @@
 
 .modalContent-btn {
     display: block;
-    margin:  20px 30px 20px auto;
+    margin: 20px 30px 20px auto;
     padding: 10px 40px;
     font-size: 18px;
     color: #fdfdfd;

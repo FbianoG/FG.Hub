@@ -10,6 +10,11 @@
 
 }
 
+/* !  */
+option {
+    text-transform: capitalize;
+}
+
 .guias__typeGuia-title {
     width: 100%;
     text-align: center;
@@ -111,7 +116,9 @@
     outline: none;
     border: 1px solid #ddd;
     color: #555;
+    cursor: pointer;
 }
+
 
 .formField__divider {
     width: 100%;
