@@ -13,7 +13,7 @@ export default function Header({ pageActive }) {
         <>
             <header>
                 <ul className='header-listIcon'>
-                    <span>FG</span>
+                    <span>Hub</span>
                     <i className="fa-solid fa-notes-medical" id={route == '/planos' ? 'active' : ''}></i>
                     <i className="fa-solid fa-suitcase-medical" id={route == '/termos' ? 'active' : ''}></i>
                     <i className="fa-solid fa-file-waveform" id={route == '/guias' ? 'active' : ''}></i>

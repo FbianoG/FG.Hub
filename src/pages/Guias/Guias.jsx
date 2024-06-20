@@ -216,8 +216,9 @@ export default function Guias({ pageActive }) {
                             <button onClick={removeTuss} type='button'>Remover</button>
                         </fieldset>
                         {/* <button onClick={() => pageActive('guia')}>gerar</button> */}
-                        <button type="submit">Gerar Guia</button>
-                        <button type="button" onClick={() => reset()}>Limpar</button>
+                        <button type="submit" className="btn__guia"><i className="fa-solid fa-print"></i>Gerar Guia</button>
+                        <button type="button" className="btn__guia" onClick={() => reset()}><i className="fa-solid fa-eraser"></i>Limpar</button>
+                       
                     </form>
                 }
 
@@ -310,8 +311,8 @@ export default function Guias({ pageActive }) {
                             <button onClick={removeTuss} type='button'>Remover</button>
                         </fieldset>
                         {/* <button onClick={() => pageActive('guia')}>gerar</button> */}
-                        <button type="submit">Gerar Guia</button>
-                        <button type="button" onClick={() => reset()}>Limpar</button>
+                        <button type="submit" className="btn__guia"><i className="fa-solid fa-print"></i>Gerar Guia</button>
+                        <button type="button" className="btn__guia" onClick={() => reset()}><i className="fa-solid fa-eraser"></i> Limpar</button>
                     </form>
                 }
                 {guiaActive && typeGuia === 'sadt' &&
