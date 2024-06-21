@@ -121,6 +121,9 @@ header:hover .header-menu {
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
+    header  {
+        width: 0;
+    }
     .header-listIcon {
         display: none;
     }
@@ -128,11 +131,5 @@ header:hover .header-menu {
     .header-menu {
         left: 0;
         transform: translateX(-100%);
-    }
-
-    .content {
-        padding: 20px 5%;
-        width: 100%;
-        overflow: hidden;
     }
 }

@@ -2,11 +2,8 @@
     position: absolute;
     top: 0;
     width: calc(100vw - 90px);
-    /* height: 100px; */
     height: 100%;
     background: #0009;
-
-    /* border: 1px solid red; */
 }
 
 .papel__sadt .guiasadt {
