@@ -67,7 +67,7 @@ export default function Terms({ }) {
                                 <li key={element._id} className="terms__iten">
                                     <span className='  '>{element.name}</span>
                                     <span style={styleCategory(element.category)}>{element.category}</span>
-                                    <a href={`${element.src}token=${element.srcToken}`} target='_blank'><i className="fa-regular fa-file-pdf"></i></a>
+                                    <a href={element.src} target='_blank'><i className="fa-regular fa-file-pdf"></i></a>
                                 </li>
                             ))}
                         </ul>

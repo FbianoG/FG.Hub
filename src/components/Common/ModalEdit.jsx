@@ -3,15 +3,15 @@ import './ModalEdit.css'
 
 // Firebase
 import storage from "../../../firebase";
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { getDownloadURL, ref, uploadBytes, deleteObject } from 'firebase/storage'
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 
-export default function ModalEdit({ data, type, func }) {
+export default function ModalEdit({ data, type, func, sizeTerms }) {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    const { register, handleSubmit } = useForm()
 
     const [loading, setLoading] = useState(false)
 
@@ -20,7 +20,7 @@ export default function ModalEdit({ data, type, func }) {
         try {
             const auth = getAuth()
             const user = await signInWithEmailAndPassword(auth, import.meta.env.VITE_REACT_APP_FIREBASE_EMAIL, import.meta.env.VITE_REACT_APP_FIREBASE_PASSWORD,)
-            const storageRef = ref(storage, `pdf/${name}`)
+            const storageRef = ref(storage, `${localStorage.getItem('Cnpj')}/${name}`)
             const snapshot = await uploadBytes(storageRef, file)
             const downloadURL = await getDownloadURL(snapshot.ref)
             return downloadURL
@@ -29,6 +29,23 @@ export default function ModalEdit({ data, type, func }) {
             throw new Error('Arquivo não carregado corretamente.')
         }
     }
+
+    const deleteTermFirebase = async (name) => {
+        try {
+            const auth = getAuth();
+            const user = await signInWithEmailAndPassword(auth, import.meta.env.VITE_REACT_APP_FIREBASE_EMAIL, import.meta.env.VITE_REACT_APP_FIREBASE_PASSWORD);
+            const storageRef = ref(storage, `${localStorage.getItem('Cnpj')}/${name}`);
+            await deleteObject(storageRef);
+        } catch (error) {
+            console.error(error);
+            throw new Error('Erro ao excluir o arquivo.');
+        }
+    }
+
+
+
+
+
 
     // Planos
     async function createPlan(dataForm) {
@@ -68,24 +85,25 @@ export default function ModalEdit({ data, type, func }) {
     async function createTerm(dataForm) {
         const file = dataForm.file[0]
         const name = dataForm.name
+        const size = file.size / 1000
         setLoading(true)
         try {
+            if (size / 1000 + sizeTerms > 250) throw new Error('Não há espaço suficiente para salvar o documento.')
             if (!dataForm.name || !dataForm.category || name.trim() === '') throw new Error('Preencha todos os campos.')
             if (!file) throw new Error('É necessário um arquivo PDF.')
             if (file.type !== 'application/pdf') throw new Error('Somente arquivos PDF são permitidos.')
-            if (file.size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
+            if (size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
             const uploadFirebase = await uploadTermFirebase(file, name)
-            const urlImg = uploadFirebase.split('token=').slice(0, 1).join('')
-            const urlToken = uploadFirebase.split('token=').slice(1).join('')
+            const urlImg = uploadFirebase
             dataForm.src = urlImg
-            dataForm.srcToken = urlToken
+            dataForm.size = size
             const response = await CreateTerm(dataForm)
             func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
             func.setModalEdit(false)
             func.getData('terms')
         } catch (error) {
             console.error(error)
-            func.setShowAlert({ type: 'error', title: 'Error', text: error.message })
+            func.setShowAlert({ type: 'error', title: 'Erro', text: error.message })
         } finally {
             setTimeout(() => { func.setShowAlert(false) }, 5000)
             setLoading(false)
@@ -101,12 +119,12 @@ export default function ModalEdit({ data, type, func }) {
             if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
             if (file) {
                 if (file.type !== 'application/pdf') throw new Error('Somente arquivos PDF são permitidos.')
+                if (file.size / 1000 + sizeTerms > 1) throw new Error('Não há espaço suficiente para salvar o documento.')
                 if (file.size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
                 const uploadFirebase = await uploadTermFirebase(file, name)
-                const urlImg = uploadFirebase.split('token=').slice(0, 1).join('')
-                const urlToken = uploadFirebase.split('token=').slice(1).join('')
+                const urlImg = uploadFirebase
                 dataForm.src = urlImg
-                dataForm.srcToken = urlToken
+                dataForm.size = file.size / 1000
             }
             const response = await UpdateTerm(dataForm)
             func.setShowAlert({ type: 'success', title: 'Sucesso', text: response.message })
@@ -376,7 +394,7 @@ export default function ModalEdit({ data, type, func }) {
                     <input type='file' {...register('file')} />
                     <div className="modelEdit__content-groupBtn">
                         {!loading ? <>
-                            <button type='button' onClick={() => delIten('term')}>Excluir</button>
+                            <button type='button' onClick={() => { delIten('term'), deleteTermFirebase(data.name) }}>Excluir</button>
                             <button type='button' onClick={() => func.setModalEdit(false)}>Cancelar</button>
                             <button type='submit'>Atualizar</button>
                         </>

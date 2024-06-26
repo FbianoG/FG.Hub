@@ -19,6 +19,8 @@ export default function Config() {
     const [data, setData] = useState(null) // Conteudo que irá carregar (planos, termos, etc.)
     const [typeData, setTypeData] = useState(null) // Tipo de conteudo que irá carregar (planos, termos, etc.)
 
+    const [sizeTerms, setSizeTerms] = useState(null)
+
 
     async function getData(e) {
         setTypeData(e)
@@ -27,7 +29,7 @@ export default function Config() {
         let response
         try {
             if (e === 'plans') { response = await GetPlans(); setData(response) }
-            else if (e === 'terms') { response = await GetTerms(); setData(response) }
+            else if (e === 'terms') { response = await GetTerms(); setData(response); sumSizeTerms(response) }
             else if (e === 'ramais') { response = await GetRamais(); setData(response) }
             else if (e === 'sites') { response = await GetSites(); setData(response) }
             else if (e === 'doctors') { response = await GetDoctors(); setData(response) }
@@ -37,6 +39,13 @@ export default function Config() {
         } finally {
             setLoading(false)
             setTimeout(() => setShowAlert(false), 7000)
+        }
+    }
+
+    function sumSizeTerms(terms) {
+        if (terms.length > 0) {
+            const totalSize = terms.reduce((acc, term) => acc + term.size, 0)
+            setSizeTerms(totalSize / 1000)
         }
     }
 
@@ -84,7 +93,8 @@ export default function Config() {
                             <span>Nome</span>
                             <span>Criado em</span>
                             <span>Atualizado</span>
-                            <span style={{ gridColumn: 'span 2' }}>Arquivo</span>
+                            <span>Arquivo</span>
+                            <span style={{ textAlign: 'center' }}>{sizeTerms && sizeTerms.toFixed(2)}mb / 250mb</span>
                             <button title='Adicionar Arquivo' onClick={() => { setTypeModal('createTerm'), setModalEdit(true) }}><i className="fa-solid fa-plus"></i></button>
                         </div>
                         <ul className='group__list'>
@@ -93,7 +103,8 @@ export default function Config() {
                                     <span>{element.name}</span>
                                     <span>{element.create.slice(0, 10).split('-').reverse().join('/')}</span>
                                     <span>{element.update.slice(0, 10).split('-').reverse().join('/')}</span>
-                                    <a href={`${element.src}token=${element.srcToken}`} target='_blank' style={{ gridColumn: 'span 2' }}>PDF - {element.name}</a>
+                                    <a href={element.src} target='_blank' >PDF - {element.name}</a>
+                                    <span style={{ textAlign: 'center' }}>{(element.size / 1000).toFixed(2)}mb</span>
                                     <button title='Editar Arquivo' onClick={() => { setTypeModal('editTerm'), setModalEdit(true), setElement(element) }} ><i className="fa-solid fa-up-right-from-square"></i></button>
                                 </li>
                             ))}
@@ -175,7 +186,7 @@ export default function Config() {
             </div>
 
             {loading && <Loading />}
-            {modalEdit && <ModalEdit func={{ setModalEdit, setShowAlert, getData }} data={element} type={typeModal} />}
+            {modalEdit && <ModalEdit func={{ setModalEdit, setShowAlert, getData }} data={element} type={typeModal} sizeTerms={sizeTerms} />}
             {showAlert && <ToastAlert data={showAlert} />}
         </>
     )
