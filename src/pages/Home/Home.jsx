@@ -66,9 +66,9 @@ export default function Home({ func }) {
             {!create && <form onSubmit={handleSubmit(login)}>
                 <h3>Login</h3>
                 <label htmlFor=''>Login</label>
-                <input type='text' {...register('username')} defaultValue={'admin'} />
+                <input type='text' {...register('username')} />
                 <label htmlFor=''>Senha</label>
-                <input type='password' {...register('password')} defaultValue={'admin'} />
+                <input type='password' {...register('password')} />
                 {loginLoading ? <button type='submit' disabled >Aguarde...</button> : <button type='submit'>Acessar</button>}
                 <span onClick={() => { setCreate(true), reset() }}>Criar conta</span>
             </form>}

@@ -163,7 +163,7 @@ export default function Guias({ pageActive }) {
                         <fieldset>
                             <h3 className="formField-title">Dados da Internação</h3>
                             <label htmlFor=''>Indicação Clínica:</label>
-                            <input type='text' {...register("ind")} />
+                            <textarea spellCheck='false' {...register("ind")}></textarea>
                             <label htmlFor=''>Tipo de Internação:</label>
                             <select {...register("type")}>
                                 <option value="1">Clínica</option>
@@ -218,7 +218,7 @@ export default function Guias({ pageActive }) {
                         {/* <button onClick={() => pageActive('guia')}>gerar</button> */}
                         <button type="submit" className="btn__guia"><i className="fa-solid fa-print"></i>Gerar Guia</button>
                         <button type="button" className="btn__guia" onClick={() => reset()}><i className="fa-solid fa-eraser"></i>Limpar</button>
-                       
+
                     </form>
                 }
 

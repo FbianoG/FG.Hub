@@ -202,6 +202,7 @@ p#anexo {
     position: relative;
     top: -70px;
     width: 850px;
+    text-transform: none;
 }
 
 p#cid {

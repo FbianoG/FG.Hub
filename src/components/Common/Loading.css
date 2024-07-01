@@ -1,4 +1,4 @@
-.loading {
+/* .loading {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,4 +33,57 @@
         opacity: 0.5;
     }
 
+} */
+
+
+
+.loading svg polyline {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.loading svg polyline#back {
+    fill: none;
+    stroke: #ddd;
+}
+
+.loading svg polyline#front {
+    fill: none;
+    stroke: var(--color-tertiary);
+    stroke-dasharray: 48, 144;
+    stroke-dashoffset: 192;
+    animation: dash_682 1.4s linear infinite;
+}
+
+@keyframes dash_682 {
+    72.5% {
+        opacity: 0;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.loading span {
+    color: #555;
+    font-size: 18px;
+    animation: pulse 700ms infinite alternate;
+}
+
+@keyframes pulse {
+    0% {}
+
+    100% {
+        opacity: 0.5;
+    }
 }

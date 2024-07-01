@@ -31,7 +31,8 @@ export default function Modal({ dataPlan, setShowModal }) {
                 </div>
                 <div className="modal__row">
                     <label className="modalContent-subtitle">Observação</label>
-                    <p className='modalContent-content'>{dataPlan.data.obs}</p>
+                    <textarea defaultValue={dataPlan.data.obs} disabled></textarea>
+
                 </div>
 
 

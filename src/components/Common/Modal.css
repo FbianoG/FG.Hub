@@ -45,6 +45,33 @@
     }
 }
 
+.modal__row textarea {
+    width: 100%;
+    resize: none;
+    font-size: 16px;
+    color: #555;
+    border: none;
+    height: 120px;
+    padding: 0 5px;
+
+    &:disabled {
+        background: none;
+    }
+
+    &::-webkit-scrollbar {
+    width: 5px;
+    }
+    
+    &::-webkit-scrollbar-track {
+    background: #eee;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+    background: var(--color-tertiary);
+    border-radius: 10px;
+    }
+}
+
 .modal__row.head {
     display: grid;
     grid-template-columns: 1fr;
@@ -85,13 +112,15 @@
     font-size: 18px;
     color: #fdfdfd;
     font-weight: 500;
-    background: var(--color-tertiary);
+    background: #4b72aa;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 3px 3px 5px #0003;
-}
+    transition: 300ms;
 
-.modalContent-btn:hover {
-    filter: brightness(0.95);
+    &:hover {
+        filter: brightness(1.2);
+        -webkit-filter: brightness(1.2);
+    }
 }

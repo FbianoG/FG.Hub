@@ -118,6 +118,20 @@ option {
     cursor: pointer;
 }
 
+.formContainer-guia fieldset textarea {
+    width: calc(70% - 10px);
+    padding: 3px 5px;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+    border: 1px solid #ddd;
+    color: #555;
+
+    &:focus {
+        border-color: var(--color-tertiary);
+    }
+}
+
 
 .formField__divider {
     width: 100%;
