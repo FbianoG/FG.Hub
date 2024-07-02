@@ -255,7 +255,10 @@ export default function Guias({ pageActive }) {
                                 <option value="" selected disabled>Plano</option>
                                 <option value="amil">Amil</option>
                                 <option value="assim">Assim</option>
+                                <option value="bradesco">Bradesco</option>
                                 <option value="caberj">Caberj</option>
+                                <option value="camarj">Camarj</option>
+                                <option value="camperj">Camperj</option>
                                 <option value="cassi">Cassi</option>
                                 <option value="eletros">Eletros Saúde</option>
                                 <option value="fiosaude">Fio Saúde</option>
@@ -263,9 +266,12 @@ export default function Guias({ pageActive }) {
                                 <option value="goldencross">Golden Cross</option>
                                 <option value="intermedica">Intermédica</option>
                                 <option value="ipalerj">Ipalerj</option>
+                                <option value="mediservice">Mediservice</option>
+                                <option value="omint">Omint</option>
                                 <option value="petrobras">Petrobras</option>
                                 <option value="realgrandeza">Real Grandeza</option>
                                 <option value="caixa">Saúde Caixa</option>
+                                <option value="unafisco">Unafisco</option>
                                 <option value="unimed">Unimed</option>
                                 <option value="vale">Vale</option>
                             </select>
