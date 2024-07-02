@@ -19,6 +19,7 @@ option {
     text-align: center;
     padding: 10px;
     border-right: 1px solid #fff4;
+
 }
 
 .guias__typeGuia i {
@@ -47,6 +48,7 @@ option {
     cursor: pointer;
     transform: scale(0.5);
     animation: showOptions 300ms both;
+    font-weight: normal;
 
     & span:hover {
         color: #aaa;
@@ -133,7 +135,6 @@ option {
     }
 }
 
-
 .formField__divider {
     width: 100%;
     height: 1px;
@@ -141,18 +142,21 @@ option {
     margin: 0 10px;
 }
 
-
 .formField__content-tuss {
     display: flex;
     flex-wrap: wrap;
     gap: 10px 0;
 }
 
+.formField__btnGroup {
+    width: calc(70% - 10px);
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
 
 fieldset button {
-    padding: 5px 20px;
-    display: block;
-    margin: 0 auto;
+    padding: 5px 15px;
     border: none;
     background: var(--color-tertiary);
     border-radius: 5px;
@@ -162,7 +166,7 @@ fieldset button {
     transition: 300ms;
 
     &:hover {
-        opacity: 0.5;
+        opacity: 0.8;
     }
 
     &:nth-last-child(1) {
@@ -171,20 +175,11 @@ fieldset button {
 }
 
 .btn__guia {
-    display: inline-flex;
-    gap: 10px;
-    place-items: center;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid var(--color-tertiary);
-    cursor: pointer;
     margin: 0 30px 0 0;
-    color: #333;
-    transition: 300ms;
-    font-weight: 500;
-
-
     padding: 10px 30px;
+    display: inline-flex;
+    place-items: center;
+    gap: 10px;
     font-size: 16px;
     color: #fdfdfd;
     font-weight: 500;

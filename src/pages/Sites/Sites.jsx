@@ -12,7 +12,7 @@ export default function Sites() {
 
     useEffect(() => { loadSites() }, [])
 
-    async function loadSites() {
+    async function loadSites() { // Busca os sites no banco de dados
         try {
             const response = await GetSites()
             setSites(response)
@@ -38,7 +38,6 @@ export default function Sites() {
                     ))}
                 </div>
             </div>
-
             {!sites && <Loading />}
             {showAlert && <ToastAlert data={showAlert} />}
         </>

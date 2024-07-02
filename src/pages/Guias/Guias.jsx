@@ -10,23 +10,33 @@ import Guia from "../Guia/Guia";
 import Header from "../../components/Shared/Header";
 import GuiaSadt from "../Guia/GuiaSadt";
 
-export default function Guias({ pageActive }) {
+export default function Guias() {
 
-    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm();
-    const [typeGuia, setTypeGuia] = useState('int')
-    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Internação')
+    // Variáveis //
 
+    const { register, handleSubmit, setValue, reset } = useForm();
+
+    const [typeGuia, setTypeGuia] = useState('int') // Tipo da guia que será gerada
+    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Internação') // Legenda do btn para selecionar guia
+    const [optionsGuia, setOptionsGuia] = useState(false) // Visualizar opções do btn do tipo de guia
+
+    // campos do TUSS
     const [tussField1, setTussField1] = useState(false)
     const [tussField2, setTussField2] = useState(false)
     const [tussField3, setTussField3] = useState(false)
     const [tussField4, setTussField4] = useState(false)
     const [tussField5, setTussField5] = useState(false)
 
-    const [guiaActive, setGuiaActive] = useState(false)
-    const [dataGuia, setDataGuia] = useState({})
+    const [guiaActive, setGuiaActive] = useState(false) // Diz se a guia está visível ou não
+    const [dataGuia, setDataGuia] = useState({}) // Dados da guia
+    const [doctors, setDoctors] = useState(null) // Lista de médicos vindo do banco de dados
 
 
-    const addTuss = () => {
+    // Funções //
+
+    useEffect(() => { setValue('dateSol', new Date().toISOString().split('T')[0]); getDoctors() }, [])
+
+    function addTuss() { // Inclui campo de procedimentos
         if (!tussField1) setTussField1(true)
         if (tussField1) setTussField2(true)
         if (tussField2) setTussField3(true)
@@ -34,7 +44,7 @@ export default function Guias({ pageActive }) {
         if (tussField4) setTussField5(true)
     }
 
-    function removeTuss() {
+    function removeTuss() { // Excluir campo de procendimentos
         if (tussField5) setTussField5(false), setValue(`tuss6`, ''), setValue(`proced6`, ''), setValue(`qtd6`, '')
         if (!tussField5) setTussField4(false), setValue(`tuss5`, ''), setValue(`proced5`, ''), setValue(`qtd5`, '')
         if (!tussField4) setTussField3(false), setValue(`tuss4`, ''), setValue(`proced4`, ''), setValue(`qtd4`, '')
@@ -42,8 +52,8 @@ export default function Guias({ pageActive }) {
         if (!tussField2) setTussField1(false), setValue(`tuss2`, ''), setValue(`proced2`, ''), setValue(`qtd2`, '')
     }
 
-    const inputTuss = (e) => (
-        <div className='formField__content-tuss'>
+    function inputTuss(e) { // HTML do campo de procedimentos
+        return <div className='formField__content-tuss'>
             <label htmlFor=''>Código TUSS:</label>
             <input type='text' id='' {...register(`tuss${e}`)} onChange={(e) => searchTuss(e)} />
             <label htmlFor=''>Nome do Procedimento:</label>
@@ -51,9 +61,9 @@ export default function Guias({ pageActive }) {
             <label htmlFor=''>Quantidade:</label>
             <input type='text' defaultValue='1' {...register(`qtd${e}`)} />
         </div>
-    )
+    }
 
-    async function searchTuss(e) {
+    async function searchTuss(e) { // Autocompleta nome do procedimento ao digitar código TUSS
         if (e.target.value.length === 8) {
             let proced = e.target.parentNode.querySelectorAll('input')[1]
             const proceTuss = tuss.find(element => element.codigo == e.target.value)
@@ -63,19 +73,14 @@ export default function Guias({ pageActive }) {
         }
     }
 
-    async function createGuia(data) {
-        const response = await
-            setDataGuia(data)
+    async function createGuia(data) { // Gera a guia
+        setDataGuia(data)
         setGuiaActive(true)
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0) // Scrolla ao topo da tela
     }
 
-    const [optionsGuia, setOptionsGuia] = useState(false)
-
-    const [doctors, setDoctors] = useState(null)
-
-    async function getDoctors() {
-        try {
+    async function getDoctors() { // Busca os médicos no banco de dados
+        try { //! preciso fazer tratamento de erro aqui
             const response = await GetDoctors()
             setDoctors(response)
         } catch (error) {
@@ -83,11 +88,7 @@ export default function Guias({ pageActive }) {
         }
     }
 
-    useEffect(() => { setValue('dateSol', new Date().toISOString().split('T')[0]); getDoctors() }, [])
-
-    const [, set] = useState()
-
-    function selectMed(e) {
+    function selectMed(e) { // Autocompleta os inputs ao selecionar médico
         const findDoctor = doctors.find(element => element._id == e)
         setValue('doctor', findDoctor.name);
         setValue('crm', findDoctor.crm);
@@ -232,8 +233,10 @@ export default function Guias({ pageActive }) {
                             <div className="formField__divider"></div>
                             {tussField5 && inputTuss(6)}
                             <label htmlFor=''>Adicionar Procedimento:</label>
-                            <button onClick={addTuss} type='button'>Adicionar</button>
-                            <button onClick={removeTuss} type='button'>Remover</button>
+                            <div className="formField__btnGroup">
+                                <button onClick={addTuss} type='button'><i className="fa-solid fa-plus"></i></button>
+                                <button onClick={removeTuss} type='button'><i className="fa-solid fa-delete-left"></i></button>
+                            </div>
                         </fieldset>
                         {/* <button onClick={() => pageActive('guia')}>gerar</button> */}
                         <button type="submit" className="btn__guia"><i className="fa-solid fa-print"></i>Gerar Guia</button>
@@ -341,6 +344,7 @@ export default function Guias({ pageActive }) {
                         <button type="button" className="btn__guia" onClick={() => reset()}><i className="fa-solid fa-eraser"></i> Limpar</button>
                     </form>
                 }
+                
                 {guiaActive && typeGuia === 'sadt' &&
                     <div className="papel__sadt">
                         <GuiaSadt data={dataGuia} func={{ setGuiaActive }} />

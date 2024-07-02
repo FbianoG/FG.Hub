@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 40px 20px;
+    gap: 30px 20px;
 }
 
 /* MB <= 767 - TB <= 1023 - */
