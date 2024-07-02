@@ -120,6 +120,7 @@ option {
 
 .formContainer-guia fieldset textarea {
     width: calc(70% - 10px);
+    height: 60px;
     padding: 3px 5px;
     border-radius: 5px;
     outline: none;
@@ -182,8 +183,29 @@ fieldset button {
     transition: 300ms;
     font-weight: 500;
 
+
+    padding: 10px 30px;
+    font-size: 16px;
+    color: #fdfdfd;
+    font-weight: 500;
+    background: #4b72aa;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px #0003;
+    transition: 300ms;
+
     &:hover {
-        background: #fff;
+        filter: brightness(1.2);
+        -webkit-filter: brightness(1.2);
+    }
+
+    &:nth-last-of-type(1) {
+        background: none;
+        border: 1px solid #95b5e0;
+        color: #4b72aa;
+        box-shadow: none;
+
     }
 }
 

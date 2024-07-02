@@ -59,7 +59,6 @@
 .dados p {
     max-height: 18px;
     min-height: 18px;
-    background: white;
     margin: 14px 0;
     margin-left: 50px;
     padding-left: 5px;
@@ -198,18 +197,38 @@ p#diariaSol {
     width: 74px;
 }
 
-p#anexo {
+p#opme {
+    display: inline;
+    top: -77px;
+    left: 67px;
+    /* width: 100px; */
+    position: relative;
+}
+
+#anexo {
+    width: 895px;
+    max-height: none;
+    height: 170px;
+    padding: 0 0 0 5px;
+    margin: 11px 0 0 50px;
     position: relative;
     top: -70px;
-    width: 850px;
     text-transform: none;
+    text-overflow: wrap;
+    font-size: 14px;
+    color: #000;
+    resize: none;
+    background: white;
+    border: none;
+    overflow: hidden;
 }
 
 p#cid {
     background: none;
     position: relative;
-    top: 90px;
+    top: -46px;
     width: 113px;
+    text-align: center;
 }
 
 .tuss {
@@ -217,7 +236,7 @@ p#cid {
     width: 868px;
     height: 235px;
     position: relative;
-    top: 142px;
+    top: -10px;
     left: 68px;
     display: grid;
     grid-template-columns: 50px 180px 470px 80px 80px;
@@ -263,53 +282,43 @@ p#cid {
 
 #diariaAut {
     position: relative;
-    top: 174px;
+    top: 23px;
     left: 232px;
     text-align: center;
 }
 
 #leito {
     position: relative;
-    top: 144px;
+    top: -10px;
     left: 479px;
 }
 
 #cnpj3 {
-    position: relative;
     width: 240px;
-    top: 155px;
+    position: relative;
+    top: 3px;
     left: -3px;
 
 }
 
 #contratado3 {
-    position: relative;
     width: 515px;
-    top: 121px;
+    position: relative;
+    top: -29px;
     left: 252px
 }
 
 #dataSol {
     position: relative;
-    top: 211px;
+    top: 62px;
     width: 181px;
     left: -3px;
-}
-
-#borda {
-    border: 7px solid #fff;
-    width: 939px;
-    position: relative;
-    height: 1307px;
-    top: -1090px;
-    left: 31px;
-    z-index: 0;
 }
 
 #logoImage {
     background: #fff;
     position: relative;
-    top: -2391px;
+    top: -1239px;
     width: 200px;
     height: 67px;
     left: 46px;
@@ -325,7 +334,7 @@ p#cid {
     .btn_backGuia {
         display: none;
     }
-    
+
     .papel {
         margin-left: 0px;
         position: relative;

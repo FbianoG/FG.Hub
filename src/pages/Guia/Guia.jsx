@@ -23,14 +23,15 @@ export default function Guia({ data, func }) {
                 <p id="crm">{data.crm}</p>
                 <p id="uf">RJ</p>
                 <p id="cbo">{data.cbo}</p>
-                <p id="cnpj2"></p>
-                <p id="contratado2"></p>
+                <p id="cnpj2">{data.contratado === 'chn' && '60884855001207'} {data.contratado === 'hi' && '31671480000308'}</p>
+                <p id="contratado2">{data.contratado === 'chn' && 'CHN - Complexo Hospitalar de Niterói'} {data.contratado === 'hi' && 'Hospital Icaraí'}</p>
                 <p id="carater">{data.carater}</p>
                 <p id="tipo">{data.type}</p>
                 <p id="regime">1</p>
                 <p id="diariaSol">{data.daily}</p>
-                <p id="anexo">{data.ind}</p>
-                <p id="cid"></p>
+                <p id='opme'>{data.opme}</p>
+                <textarea id="anexo" defaultValue={data.ind} disabled></textarea>
+                <p id="cid">{data.cid}</p>
                 <div className="tuss">
                     <div className="tabela">
                         <p id="tb1">{data.tuss1 && "22"}</p>
@@ -78,7 +79,6 @@ export default function Guia({ data, func }) {
                 <p id="cnpj3"></p>
                 <p id="contratado3"></p>
                 <p id="dataSol">{data.dateSol.split('-').reverse().join('/')}</p>
-                <div id="borda"></div>
                 <div id="logoImage">
                     <img id="logo" src={`./plansLogo/${data.plan}.png`} alt="logo do plano de saúde" />
                 </div>

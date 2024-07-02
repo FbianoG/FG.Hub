@@ -121,7 +121,10 @@ export default function Guias({ pageActive }) {
                                 <option value="" selected disabled>Plano</option>
                                 <option value="amil">Amil</option>
                                 <option value="assim">Assim</option>
+                                <option value="bradesco">Bradesco</option>
                                 <option value="caberj">Caberj</option>
+                                <option value="camarj">Camarj</option>
+                                <option value="camperj">Camperj</option>
                                 <option value="cassi">Cassi</option>
                                 <option value="eletros">Eletros Saúde</option>
                                 <option value="fiosaude">Fio Saúde</option>
@@ -129,9 +132,12 @@ export default function Guias({ pageActive }) {
                                 <option value="goldencross">Golden Cross</option>
                                 <option value="intermedica">Intermédica</option>
                                 <option value="ipalerj">Ipalerj</option>
+                                <option value="mediservice">Mediservice</option>
+                                <option value="omint">Omint</option>
                                 <option value="petrobras">Petrobras</option>
                                 <option value="realgrandeza">Real Grandeza</option>
                                 <option value="caixa">Saúde Caixa</option>
+                                <option value="unafisco">Unafisco</option>
                                 <option value="unimed">Unimed</option>
                                 <option value="vale">Vale</option>
                             </select>
@@ -157,13 +163,27 @@ export default function Guias({ pageActive }) {
                             <input type='date' {...register("dateSol")} />
                             <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} />
-                            <div className="formField__data">
-                            </div>
+                            <label htmlFor=''>Local de Realização:</label>
+                            <select {...register('contratado')}>
+                                <option value="" ></option>
+                                <option value="chn" >Complexo Hospitalar de Niterói</option>
+                                <option value="hi" >Hospital Icaraí</option>
+
+                            </select>
+
                         </fieldset>
                         <fieldset>
                             <h3 className="formField-title">Dados da Internação</h3>
                             <label htmlFor=''>Indicação Clínica:</label>
                             <textarea spellCheck='false' {...register("ind")}></textarea>
+                            <label htmlFor=''>CID:</label>
+                            <input type='text' {...register('cid')} />
+                            <label htmlFor=''>OPME:</label>
+                            <select {...register('opme')}>
+                                <option value="N" >Não</option>
+                                <option value="S" >Sim</option>
+
+                            </select>
                             <label htmlFor=''>Tipo de Internação:</label>
                             <select {...register("type")}>
                                 <option value="1">Clínica</option>
