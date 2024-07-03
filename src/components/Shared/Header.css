@@ -119,17 +119,44 @@ header:hover .header-menu {
     color: #688eb9;
 }
 
+.btnMenu {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: var(--color-tertiary);
+    border: none;
+    font-size: 24px;
+    color: #fdfdfd;
+    box-shadow: 2px 2px 5px #0003;
+
+
+    &: i {
+
+    }
+}
+
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
-    header  {
+    header {
         width: 0;
     }
+
     .header-listIcon {
         display: none;
     }
 
+    header:hover .header-menu {
+        left: 0px;
+    }
+    
     .header-menu {
-        left: 0;
-        transform: translateX(-100%);
+        /* width: 100%; */
+        /* left: 0; */
+        /* transform: translateX(-100%); */
+
+
     }
 }

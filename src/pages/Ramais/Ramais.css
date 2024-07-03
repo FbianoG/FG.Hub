@@ -24,7 +24,6 @@
     }
 }
 
-
 .ramais__list {
     width: 700px;
     max-height: 650px;
@@ -55,7 +54,6 @@
     }
 }
 
-
 .ramais__iten {
     padding: 20px;
     height: 60px;
@@ -81,4 +79,23 @@
 .ramais__iten span {
     text-align: center;
 
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .ramais__list-legend {
+        width: 100%;
+        
+    }
+
+    .ramais__list {
+        max-height: calc(100vh - 300px);
+    }
+
+    .ramais__iten {
+        height: auto;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
 }

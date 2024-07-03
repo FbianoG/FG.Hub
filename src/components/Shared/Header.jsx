@@ -41,6 +41,10 @@ export default function Header({ pageActive }) {
                         <li className="header-menuListIten" onClick={() => location.href = '/'} style={{ margin: 'auto 0 0 0' }}><i className="fa-solid fa-caret-right"></i>Logout</li>
                     </ul>
                 </div>
+
+                {window.innerWidth <= 767 &&
+                    <button className='btnMenu'><i className="fa-solid fa-bars"></i></button>
+                }
             </header>
         </>
     )
