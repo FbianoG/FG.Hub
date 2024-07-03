@@ -336,15 +336,17 @@ export default function Guias() {
                             {tussField4 && inputTuss(5)}
 
                             <label htmlFor=''>Adicionar Procedimento:</label>
-                            <button onClick={addTuss} type='button'>Adicionar</button>
-                            <button onClick={removeTuss} type='button'>Remover</button>
+                            <div className="formField__btnGroup">
+                                <button onClick={addTuss} type='button'><i className="fa-solid fa-plus"></i></button>
+                                <button onClick={removeTuss} type='button'><i className="fa-solid fa-delete-left"></i></button>
+                            </div>
                         </fieldset>
                         {/* <button onClick={() => pageActive('guia')}>gerar</button> */}
                         <button type="submit" className="btn__guia"><i className="fa-solid fa-print"></i>Gerar Guia</button>
                         <button type="button" className="btn__guia" onClick={() => reset()}><i className="fa-solid fa-eraser"></i> Limpar</button>
                     </form>
                 }
-                
+
                 {guiaActive && typeGuia === 'sadt' &&
                     <div className="papel__sadt">
                         <GuiaSadt data={dataGuia} func={{ setGuiaActive }} />

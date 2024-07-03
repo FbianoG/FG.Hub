@@ -90,7 +90,7 @@
     }
 
     .ramais__list {
-        max-height: calc(100vh - 300px);
+        max-height: calc(100vh - 240px);
     }
 
     .ramais__iten {
