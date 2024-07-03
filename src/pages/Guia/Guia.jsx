@@ -2,7 +2,6 @@ import './Guia.css'
 
 export default function Guia({ data, func }) {
 
-
     return (
         <>
             <div className="btn_backGuia">
