@@ -9,6 +9,8 @@ import Sites from './pages/Sites/Sites'
 import Config from './pages/Config/Config'
 import Home from './pages/Home/Home'
 
+
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
@@ -22,6 +24,7 @@ export default function App() {
     <>
       <Router>
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/planos" element={<Plans />} />
           <Route path="/termos" element={<Terms />} />
