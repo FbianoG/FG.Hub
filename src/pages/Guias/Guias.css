@@ -146,6 +146,7 @@ option {
     display: flex;
     flex-wrap: wrap;
     gap: 10px 0;
+    position: relative;
 }
 
 .formField__btnGroup {
@@ -222,4 +223,32 @@ fieldset button {
 
     }
 
+}
+
+.formField__content-tuss-list {
+    padding: .5rem;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: calc(70% - 10px);
+    position: absolute;
+    top: 63px;
+    right: 10px;
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.formField__content-tuss-item {
+    list-style: none;
+    padding: 0.25rem;
+    font-size: 14px;
+    transition: .3s;
+    border-radius: 5px;
+    color: #555;
+
+    &:hover {
+        background: #eee;
+        cursor: pointer;
+    }
 }

@@ -52,16 +52,7 @@ export default function Guias() {
         if (!tussField2) setTussField1(false), setValue(`tuss2`, ''), setValue(`proced2`, ''), setValue(`qtd2`, '')
     }
 
-    function inputTuss(e) { // HTML do campo de procedimentos
-        return <div className='formField__content-tuss'>
-            <label htmlFor=''>Código TUSS:</label>
-            <input type='text' id='' {...register(`tuss${e}`)} onChange={(e) => searchTuss(e)} />
-            <label htmlFor=''>Nome do Procedimento:</label>
-            <input type='text' {...register(`proced${e}`)} />
-            <label htmlFor=''>Quantidade:</label>
-            <input type='text' defaultValue='1' {...register(`qtd${e}`)} />
-        </div>
-    }
+
 
     async function searchTuss(e) { // Autocompleta nome do procedimento ao digitar código TUSS
         if (e.target.value.length === 8) {
@@ -95,6 +86,49 @@ export default function Guias() {
         setValue('cbo', findDoctor.cbo);
     }
 
+    const [procedOptions, setProcedOptions] = useState([])
+
+
+    function searchProced(event) {
+        let proced = event.target.parentNode.querySelectorAll('ul')[0]
+        if (event.target.value.trim().length < 3) {
+            proced.style.display = 'none'
+            return
+        }
+        proced.style.display = 'block'
+        const proceTuss = tuss.filter(proceds => proceds.procedimento.toLowerCase().includes(event.target.value.toLowerCase()))
+        console.log(proceTuss)
+        setProcedOptions(proceTuss)
+
+    }
+
+    function selectItem(event, item) {
+        event.target.parentNode.parentNode.querySelectorAll('input')[0].value = item.codigo
+        event.target.parentNode.parentNode.querySelectorAll('input')[0].focus()
+        event.target.parentNode.parentNode.querySelectorAll('input')[1].value = item.procedimento
+        event.target.parentNode.parentNode.querySelectorAll('input')[1].focus()
+        event.target.parentNode.parentNode.querySelectorAll('input')[2].value = '1'
+        event.target.parentNode.parentNode.querySelectorAll('input')[2].focus()
+        event.target.parentNode.style.display = 'none'
+    }
+
+
+    function inputTuss(e) { // HTML do campo de procedimentos
+        return <div className='formField__content-tuss'>
+            <label htmlFor=''>Código TUSS:</label>
+            <input type='text' id='' {...register(`tuss${e}`)} onChange={(e) => searchTuss(e)} />
+            <label htmlFor=''>Nome do Procedimento:</label>
+            <input type='text' {...register(`proced${e}`)} onChange={(e) => searchProced(e)} autoComplete="off" />
+            <ul className="formField__content-tuss-list">
+                {procedOptions.map(element => <li key={element.codigo} className="formField__content-tuss-item" onClick={(e) => selectItem(e, element)} >{element.codigo} - {element.procedimento}</li>
+                )}
+
+            </ul>
+            <label htmlFor=''>Quantidade:</label>
+            <input type='text' defaultValue='1' {...register(`qtd${e}`)} />
+        </div>
+    }
+
     return (
         <>
             <Header />
@@ -114,12 +148,12 @@ export default function Guias() {
                         <fieldset>
                             <h3 className="formField-title">Dados do Paciente</h3>
                             <label htmlFor=''>Nome do Paciente:</label>
-                            <input type='text' {...register("name")} />
+                            <input type='text' {...register("name")} required />
                             <label htmlFor=''>Nº da Carteirinha:</label>
                             <input type='text' {...register("planNumber")} />
                             <label htmlFor=''>Plano de Saúde:</label>
-                            <select {...register("plan")}>
-                                <option value="" selected disabled>Plano</option>
+                            <select {...register("plan")} required>
+                                <option value="" selected>Plano</option>
                                 <option value="amil">Amil</option>
                                 <option value="assim">Assim</option>
                                 <option value="bradesco">Bradesco</option>
@@ -150,9 +184,9 @@ export default function Guias() {
                             <label htmlFor=''>Nº da Senha:</label>
                             <input type='text' {...register("password")} />
                             <label htmlFor=''>Selecionar Médico:</label>
-                            <select onChange={(e) => selectMed(e.target.value)}>
+                            <select onChange={(e) => selectMed(e.target.value)} >
                                 <option value="" ></option>
-                                {doctors && doctors.map(element => <option value={element._id}>{element.name}</option>)}
+                                {doctors && doctors.map(element => <option key={element._id} value={element._id}>{element.name}</option>)}
                             </select>
                             <label htmlFor=''>Médico Solicitante:</label>
                             <input type='text' {...register("doctor")} />
@@ -161,11 +195,11 @@ export default function Guias() {
                             <label htmlFor=''>CBO do Médico:</label>
                             <input type='text' {...register("cbo")} />
                             <label htmlFor=''>Data da Solicitação:</label>
-                            <input type='date' {...register("dateSol")} />
+                            <input type='date' {...register("dateSol")} required/>
                             <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} />
                             <label htmlFor=''>Local de Realização:</label>
-                            <select {...register('contratado')}>
+                            <select {...register('contratado')} required>
                                 <option value="" ></option>
                                 <option value="chn" >Complexo Hospitalar de Niterói</option>
                                 <option value="hi" >Hospital Icaraí</option>
@@ -176,7 +210,7 @@ export default function Guias() {
                         <fieldset>
                             <h3 className="formField-title">Dados da Internação</h3>
                             <label htmlFor=''>Indicação Clínica:</label>
-                            <textarea spellCheck='false' {...register("ind")}></textarea>
+                            <textarea spellCheck='false' {...register("ind")} required></textarea>
                             <label htmlFor=''>CID:</label>
                             <input type='text' {...register('cid')} />
                             <label htmlFor=''>OPME:</label>
@@ -199,6 +233,7 @@ export default function Guias() {
                             </select>
                             <label htmlFor=''>Acomodação:</label>
                             <select {...register("typeRoom")}>
+                                <option value=""></option>
                                 <option value="Apt">Quarto</option>
                                 <option value="Enf">Enfermaria</option>
                                 <option value="UTI">UTI</option>
@@ -218,7 +253,12 @@ export default function Guias() {
                                 <label htmlFor=''>Código TUSS:</label>
                                 <input type='text' {...register("tuss1")} onChange={(e) => searchTuss(e)} />
                                 <label htmlFor=''>Nome do Procedimento:</label>
-                                <input type='text' {...register("proced1")} />
+                                <input type='text' {...register("proced1")} onChange={(e) => searchProced(e)} autoComplete="off" />
+                                <ul className="formField__content-tuss-list">
+                                    {procedOptions.map(element => <li key={element.codigo} className="formField__content-tuss-item" onClick={(e) => selectItem(e, element)} >{element.codigo} - {element.procedimento}</li>
+                                    )}
+
+                                </ul>
                                 <label htmlFor='' >Quantidade:</label>
                                 <input type='text' {...register("qtd1")} />
                             </div>
@@ -250,11 +290,11 @@ export default function Guias() {
                         <fieldset>
                             <h3 className="formField-title">Dados do Paciente</h3>
                             <label htmlFor=''>Nome do Paciente:</label>
-                            <input type='text' {...register("name")} />
+                            <input type='text' {...register("name")} required />
                             <label htmlFor=''>Nº da Carteirinha:</label>
                             <input type='text' {...register("planNumber")} />
                             <label htmlFor=''>Plano de Saúde:</label>
-                            <select {...register("plan")}>
+                            <select {...register("plan")} required >
                                 <option value="" selected disabled>Plano</option>
                                 <option value="amil">Amil</option>
                                 <option value="assim">Assim</option>
@@ -287,7 +327,7 @@ export default function Guias() {
                             <input type='text' {...register("password")} /> */}
 
                             <label htmlFor=''>Selecionar Médico:</label>
-                            <select onChange={(e) => selectMed(e.target.value)}>
+                            <select onChange={(e) => selectMed(e.target.value)} required>
                                 <option value="" ></option>
                                 {doctors && doctors.map(element => <option value={element._id}>{element.name}</option>)}
                             </select>
@@ -300,7 +340,7 @@ export default function Guias() {
                             <input type='text' {...register("cbo")} />
 
                             <label htmlFor=''>Data da Solicitação:</label>
-                            <input type='date' {...register("dateSol")} defaultValue={new Date().toISOString().split('T')[0]} />
+                            <input type='date' {...register("dateSol")} defaultValue={new Date().toISOString().split('T')[0]} required/>
                             {/* <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} /> */}
                             {/* <div className="formField__data">
@@ -309,9 +349,9 @@ export default function Guias() {
                         <fieldset>
                             <h3 className="formField-title">Dados da Solicitação</h3>
                             <label htmlFor=''>Indicação Clínica:</label>
-                            <input type='text' {...register("ind")} />
+                            <input type='text' {...register("ind")} required />
                             <label htmlFor=''>Caráter do Procedimento:</label>
-                            <select {...register("carater")} >
+                            <select {...register("carater")} required >
                                 <option value="1" >Urgência</option>
                                 <option value="2">Eletiva</option>
                             </select>
@@ -322,7 +362,12 @@ export default function Guias() {
                                 <label htmlFor=''>Código TUSS:</label>
                                 <input type='text' {...register("tuss1")} onChange={(e) => searchTuss(e)} />
                                 <label htmlFor=''>Nome do Procedimento:</label>
-                                <input type='text' {...register("proced1")} />
+                                <input type='text' {...register("proced1")} onChange={(e) => searchProced(e)} autoComplete="off" />
+                                <ul className="formField__content-tuss-list">
+                                    {procedOptions.map(element => <li key={element.codigo} className="formField__content-tuss-item" onClick={(e) => selectItem(e, element)} >{element.codigo} - {element.procedimento}</li>
+                                    )}
+
+                                </ul>
                                 <label htmlFor='' >Quantidade:</label>
                                 <input type='text' {...register("qtd1")} />
                             </div>
