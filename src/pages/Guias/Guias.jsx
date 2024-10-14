@@ -16,8 +16,8 @@ export default function Guias() {
 
     const { register, handleSubmit, setValue, reset } = useForm();
 
-    const [typeGuia, setTypeGuia] = useState('int') // Tipo da guia que será gerada
-    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Internação') // Legenda do btn para selecionar guia
+    const [typeGuia, setTypeGuia] = useState('sadt') // Tipo da guia que será gerada
+    const [textTypeGuia, setTextTypeGuia] = useState('Guia de Sadt') // Legenda do btn para selecionar guia
     const [optionsGuia, setOptionsGuia] = useState(false) // Visualizar opções do btn do tipo de guia
 
     // campos do TUSS
@@ -52,8 +52,6 @@ export default function Guias() {
         if (!tussField2) setTussField1(false), setValue(`tuss2`, ''), setValue(`proced2`, ''), setValue(`qtd2`, '')
     }
 
-
-
     async function searchTuss(e) { // Autocompleta nome do procedimento ao digitar código TUSS
         if (e.target.value.length === 8) {
             let proced = e.target.parentNode.querySelectorAll('input')[1]
@@ -68,6 +66,14 @@ export default function Guias() {
         setDataGuia(data)
         setGuiaActive(true)
         window.scrollTo(0, 0) // Scrolla ao topo da tela
+    }
+
+    async function createGuiaSadt(data) { // Gera a guia
+        // setDataGuia(data)
+        // setGuiaActive(true)
+        // window.scrollTo(0, 0) // Scrolla ao topo da tela
+        localStorage.setItem('Sadt', JSON.stringify(data))
+        window.open('/sadt', '_blank');
     }
 
     async function getDoctors() { // Busca os médicos no banco de dados
@@ -87,7 +93,6 @@ export default function Guias() {
     }
 
     const [procedOptions, setProcedOptions] = useState([])
-
 
     function searchProced(event) {
         let proced = event.target.parentNode.querySelectorAll('ul')[0]
@@ -111,7 +116,6 @@ export default function Guias() {
         event.target.parentNode.parentNode.querySelectorAll('input')[2].focus()
         event.target.parentNode.style.display = 'none'
     }
-
 
     function inputTuss(e) { // HTML do campo de procedimentos
         return <div className='formField__content-tuss'>
@@ -195,7 +199,7 @@ export default function Guias() {
                             <label htmlFor=''>CBO do Médico:</label>
                             <input type='text' {...register("cbo")} />
                             <label htmlFor=''>Data da Solicitação:</label>
-                            <input type='date' {...register("dateSol")} required/>
+                            <input type='date' {...register("dateSol")} required />
                             <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} />
                             <label htmlFor=''>Local de Realização:</label>
@@ -286,7 +290,7 @@ export default function Guias() {
                 }
 
                 {typeGuia === 'sadt' &&
-                    <form className="formContainer-guia" onSubmit={handleSubmit(createGuia)}>
+                    <form className="formContainer-guia" onSubmit={handleSubmit(createGuiaSadt)}>
                         <fieldset>
                             <h3 className="formField-title">Dados do Paciente</h3>
                             <label htmlFor=''>Nome do Paciente:</label>
@@ -340,7 +344,7 @@ export default function Guias() {
                             <input type='text' {...register("cbo")} />
 
                             <label htmlFor=''>Data da Solicitação:</label>
-                            <input type='date' {...register("dateSol")} defaultValue={new Date().toISOString().split('T')[0]} required/>
+                            <input type='date' {...register("dateSol")} defaultValue={new Date().toISOString().split('T')[0]} required />
                             {/* <label htmlFor=''>Data da Autorização:</label>
                             <input type='date' {...register("dateAut")} /> */}
                             {/* <div className="formField__data">
@@ -352,8 +356,8 @@ export default function Guias() {
                             <input type='text' {...register("ind")} required />
                             <label htmlFor=''>Caráter do Procedimento:</label>
                             <select {...register("carater")} required >
-                                <option value="1" >Urgência</option>
                                 <option value="2">Eletiva</option>
+                                <option value="1" >Urgência</option>
                             </select>
                         </fieldset>
                         <fieldset>

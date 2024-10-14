@@ -77,5 +77,6 @@ export default function GuiaSadt({ data, func }) {
 
         </>
 
+
     )
 }

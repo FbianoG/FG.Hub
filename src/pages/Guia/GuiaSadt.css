@@ -7,7 +7,8 @@
 }
 
 .papel__sadt .guiasadt {
-    width: 1360px;
+    width: 1123px;
+    height: 794px;
     display: block;
     margin: 0 auto;
     z-index: 1;
@@ -19,8 +20,8 @@
     left: 50%;
     transform: translate(-50%);
     z-index: 2;
-    width: 1360px;
-    padding: 18px 39px;
+    width: 1110px;
+    padding: 18px 26px;
 }
 
 /* MB <= 767 - TB <= 1023 - */
@@ -32,10 +33,10 @@
 }
 
 .logo__imageSadt {
-    width: 150px;
-    height: 60px;
+    width: 140px;
+    height: 47px;
     background: #fff;
-    margin: 0 0 101px;
+    margin: 0 0 81px;
 
     & img {
         width: 100%;
@@ -44,18 +45,18 @@
 }
 
 .sadt__content p {
-    background: #fff;
+    background: rgba(255, 0, 0, 0.473);
     margin: 0 0 0 2px;
-    font-size: 15px;
-    height: 16px;
+    font-size: 14px;
+    height: 15px;
     text-transform: capitalize;
     /* background: rgba(255, 0, 0, 0.671); */
 }
 
 .contant__patient {
     display: grid;
-    grid-template-columns: 330px 395px;
-    gap: 173px;
+    grid-template-columns: 273px 327px;
+    gap: 142px;
     /* margin: 0 0 77px; */
 }
 
@@ -118,13 +119,13 @@
 }
 
 .content__contrat {
-    margin: 35px 0 27px 0;
+    margin: 27px 0 20px 0;
     display: grid;
     gap: 10px;
     grid-template-columns: 235px 905px 120px;
 
     &:nth-child(3) {
-        grid-template-columns: 235px 1035px;
+        grid-template-columns: 192px 1035px;
     }
 }
 
@@ -139,7 +140,8 @@
 
     .papel__sadt {
         width: 100vw;
-        max-height: 100vh;
+        max-height: 100%;
+        overflow: hidden;
     }
 
     .sadt__content {
@@ -147,7 +149,9 @@
     }
 
     .papel__sadt .guiasadt {
-        object-fit: contain;
+        object-fit: cover;
     }
+
+
 
 }

@@ -339,11 +339,13 @@ p#cid {
         margin-left: 0px;
         position: relative;
     }
+
 }
 
 @page {
-    /* size: 290mm 210mm; */
-    /* size: 'landscape'; */
+    /* size: A4; */
     margin: 0;
-    margin-bottom: 0px;
+    /* padding: 10px; */
+    /* margin: 0; */
+    /* margin-bottom: 0px; */
 }
