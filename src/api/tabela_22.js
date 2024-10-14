@@ -12109,7 +12109,7 @@ const tuss =[
 		},
 		{
 			codigo: 40304361,
-			procedimento: "Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)"
+			procedimento: "Hemograma"
 		},
 		{
 			codigo: 40304370,
@@ -12325,7 +12325,7 @@ const tuss =[
 		},
 		{
 			codigo: 40304922,
-			procedimento: "Coagulograma (TS, TC, prova do laço, retração do coágulo, contagem de plaquetas, tempo de protombina, tempo de tromboplastina, parcial ativado) - pesquisa e/ou dosagem"
+			procedimento: "Coagulograma "
 		},
 		{
 			codigo: 40304930,
