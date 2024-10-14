@@ -69,7 +69,10 @@ export default function Teste({ }) {
 
                                 </div>
 
-                                <div className='block'>Dados do Beneficiário</div>
+                                <div className='block'>
+                                    <img src='./bgguia.png' className='bg' alt='' />
+                                    <span> Dados do Beneficiário</span>
+                                </div>
 
                                 <div className='line'>
 
@@ -97,7 +100,10 @@ export default function Teste({ }) {
 
                                 </div>
 
-                                <div className='block'>Dados do Solicitante</div>
+                                <div className='block'>
+                                    <img src='./bgguia.png' className='bg' alt='' />
+                                    <span>Dados do Solicitante</span>
+                                </div>
 
                                 <div className='line'>
 
@@ -143,7 +149,11 @@ export default function Teste({ }) {
 
                                 </div>
 
-                                <div className='block'>Dados da Solicitação / Procedimentos e Exames Solicitados</div>
+
+                                <div className='block'>
+                                    <img src='./bgguia.png' className='bg' alt='' />
+                                    <span>Dados da Solicitação / Procedimentos e Exames Solicitados</span>
+                                </div>
 
                                 <div className='line'>
 
@@ -219,7 +229,11 @@ export default function Teste({ }) {
 
                                 </div>
 
-                                <div className='block'>Dados do Contratado Executante</div>
+
+                                <div className='block'>
+                                    <img src='./bgguia.png' className='bg' alt='' />
+                                    <span>Dados do Contratado Executante</span>
+                                </div>
 
                                 <div className='line'>
 
@@ -238,8 +252,10 @@ export default function Teste({ }) {
 
                                 </div>
 
-
-                                <div className='block'>Dados do Atendimento</div>
+                                <div className='block'>
+                                    <img src='./bgguia.png' className='bg' alt='' />
+                                    <span>Dados do Atendimento</span>
+                                </div>
 
 
 
@@ -368,7 +384,10 @@ export default function Teste({ }) {
                                 </div>
 
 
-                                <div className='block'>Identificação do(s) Profissional(is) Executante(s)</div>
+                                <div className='block'>
+                                    <img src='./bgguia.png' className='bg' alt='' />
+                                    <span>Identificação do(s) Profissional(is) Executante(s)</span>
+                                </div>
 
                                 <div className="line" >
                                     <div className="box" style={{ width: '100%', height: 'auto' }}>
