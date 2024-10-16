@@ -45,6 +45,7 @@ export default function Terms({ }) {
         else if (e === 'policial') return { color: "dodgerblue" }
         else if (e === 'emergência') return { color: "#ee7878" }
         else if (e === 'internação') return { color: "mediumseagreen" }
+        else if (e === 'opme') return { color: "#b36e3c" }
     }
 
 

@@ -357,6 +357,7 @@ export default function ModalEdit({ data, type, func, sizeTerms }) {
                     <input type='text' {...register('name')} required />
                     <label htmlFor=''>Categoria:</label>
                     <select {...register('category')}>
+                        <option value="opme">OPME</option>
                         <option value="emergência">Emergência</option>
                         <option value="internação">Internação</option>
                         <option value="policial">Policial</option>
@@ -385,6 +386,7 @@ export default function ModalEdit({ data, type, func, sizeTerms }) {
                     <input type='text' defaultValue={data.name} {...register('name')} />
                     <label htmlFor=''>Categoria:</label>
                     <select defaultValue={data.category} {...register('category')}>
+                        <option value="opme">OPME</option>
                         <option value="emergência">Emergência</option>
                         <option value="internação">Internação</option>
                         <option value="policial">Policial</option>
