@@ -1141,7 +1141,7 @@ const tuss =[
 		},
 		{
 			codigo: 30101859,
-			procedimento: "Tratamento de anomalias pilosas a laser/photoderm - por sessão"
+			procedimento: "Tratamento de anomalias pilosas a laser - por sessão"
 		},
 		{
 			codigo: 30101867,
@@ -1161,7 +1161,7 @@ const tuss =[
 		},
 		{
 			codigo: 30101905,
-			procedimento: "Tratamento de lesões cutâneas e vasculares a laser/photoderm - por sessão"
+			procedimento: "Tratamento de lesões cutâneas e vasculares a laser - por sessão"
 		},
 		{
 			codigo: 30101913,
@@ -19069,7 +19069,7 @@ const tuss =[
 		},
 		{
 			codigo: 40808092,
-			procedimento: "Biópsia percutânea de fragmento mamário (core biopsy) orientada por US ou RX - agulha grossa"
+			procedimento: "Biópsia percutânea de fragmento mamário (core biopsy) orientada por RX ou US - agulha grossa"
 		},
 		{
 			codigo: 40808106,
