@@ -42,11 +42,6 @@ export default function ModalEdit({ data, type, func, sizeTerms }) {
         }
     }
 
-
-
-
-
-
     // Planos
     async function createPlan(dataForm) {
         setLoading(true)
@@ -119,7 +114,7 @@ export default function ModalEdit({ data, type, func, sizeTerms }) {
             if (!dataForm.name || !dataForm.category) throw new Error('Preencha todos os campos.')
             if (file) {
                 if (file.type !== 'application/pdf') throw new Error('Somente arquivos PDF são permitidos.')
-                if (file.size / 1000 + sizeTerms > 1) throw new Error('Não há espaço suficiente para salvar o documento.')
+                if (file.size / 1000 + sizeTerms > 250) throw new Error('Não há espaço suficiente para salvar o documento.')
                 if (file.size > 4 * 1024 * 1024) throw new Error('Máximo de 4mb por arquivo.')
                 const uploadFirebase = await uploadTermFirebase(file, name)
                 const urlImg = uploadFirebase
@@ -358,9 +353,9 @@ export default function ModalEdit({ data, type, func, sizeTerms }) {
                     <label htmlFor=''>Categoria:</label>
                     <select {...register('category')}>
                         <option value="opme">OPME</option>
-                        <option value="emergência">Emergência</option>
+                        <option value="consulta">Consulta</option>
                         <option value="internação">Internação</option>
-                        <option value="policial">Policial</option>
+                        {/* <option value="policial">Policial</option> */}
                         <option value="outros">Outros</option>
                     </select>
                     <label htmlFor=''>Arquivo:</label>
@@ -387,9 +382,9 @@ export default function ModalEdit({ data, type, func, sizeTerms }) {
                     <label htmlFor=''>Categoria:</label>
                     <select defaultValue={data.category} {...register('category')}>
                         <option value="opme">OPME</option>
-                        <option value="emergência">Emergência</option>
+                        <option value="consulta">Consulta</option>
                         <option value="internação">Internação</option>
-                        <option value="policial">Policial</option>
+                        {/* <option value="policial">Policial</option> */}
                         <option value="outros">Outros</option>
                     </select>
                     <label htmlFor=''>Arquivo:</label>

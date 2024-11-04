@@ -101,7 +101,7 @@ export default function Guias() {
             return
         }
         proced.style.display = 'block'
-        const proceTuss = tuss.filter(proceds => proceds.procedimento.toLowerCase().includes(event.target.value.toLowerCase()))
+        const proceTuss = tuss.filter(proceds => proceds.procedimento.toLowerCase().includes(event.target.value.toLowerCase())).sort((a, b) => b.procedimento.localeCompare(a.procedimento))
         console.log(proceTuss)
         setProcedOptions(proceTuss)
 
