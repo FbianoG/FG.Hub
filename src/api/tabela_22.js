@@ -561,7 +561,7 @@ const tuss =[
 		},
 		{
 			codigo: 20104170,
-			procedimento: "Sessão de eletroconvulsoterapia (em sala com oxímetro de pulso, monitor de ECG, EEG), sob anestesia"
+			procedimento: "Sessão de eletroconvulsoterapia, sob anestesia"
 		},
 		{
 			codigo: 20104189,
@@ -10129,19 +10129,19 @@ const tuss =[
 		},
 		{
 			codigo: 40101010,
-			procedimento: "ECG convencional de até 12 derivações"
+			procedimento: "ECG convencional (eletrocardiograma)"
 		},
-		{
-			codigo: 40101029,
-			procedimento: "ECG de alta resolução"
-		},
+		// {
+		// 	codigo: 40101029,
+		// 	procedimento: "ECG de alta resolução"
+		// },
 		{
 			codigo: 40101037,
-			procedimento: "Teste ergométrico computadorizado (inclui ECG basal convencional)"
+			procedimento: "Teste ergométrico computadorizado "
 		},
 		{
 			codigo: 40101045,
-			procedimento: "Teste ergométrico convencional - 3 ou mais derivações simultâneas (inclui ECG basal convencional)"
+			procedimento: "Teste ergométrico convencional - 3 ou mais derivações simultâneas "
 		},
 		{
 			codigo: 40101053,
@@ -10149,7 +10149,7 @@ const tuss =[
 		},
 		{
 			codigo: 40101061,
-			procedimento: "Ergoespirometria ou teste cardiopulmonar de exercício completo (espirometria forçada, consumo de O2, produção de CO2 e derivados, ECG, oximetria)"
+			procedimento: "Ergoespirometria ou teste cardiopulmonar de exercício completo"
 		},
 		{
 			codigo: 40102017,
@@ -12109,7 +12109,7 @@ const tuss =[
 		},
 		{
 			codigo: 40304361,
-			procedimento: "Hemograma"
+			procedimento: "Hemograma Completo"
 		},
 		{
 			codigo: 40304370,
@@ -12325,7 +12325,7 @@ const tuss =[
 		},
 		{
 			codigo: 40304922,
-			procedimento: "Coagulograma "
+			procedimento: "Coagulograma Completo "
 		},
 		{
 			codigo: 40304930,
@@ -18885,7 +18885,7 @@ const tuss =[
 		},
 		{
 			codigo: 40805026,
-			procedimento: "RX - Tórax - 2 incidências"
+			procedimento: "RX - Tórax (PA e Perfil) - 2 incidências"
 		},
 		{
 			codigo: 40805034,
@@ -19825,11 +19825,11 @@ const tuss =[
 		},
 		{
 			codigo: 40901122,
-			procedimento: "US - Abdome total (abdome superior, rins, bexiga, aorta, veia cava inferior e adrenais)"
+			procedimento: "US - Abdome total"
 		},
 		{
 			codigo: 40901130,
-			procedimento: "US - Abdome superior (fígado, vias biliares, vesícula, pâncreas e baço)"
+			procedimento: "US - Abdome superior"
 		},
 		{
 			codigo: 40901149,
@@ -19861,7 +19861,7 @@ const tuss =[
 		},
 		{
 			codigo: 40901211,
-			procedimento: "US - Estruturas superficiais (cervical ou axilas ou músculo ou tendão)"
+			procedimento: "US - Parede Abdominal"
 		},
 		{
 			codigo: 40901220,
@@ -19965,7 +19965,7 @@ const tuss =[
 		},
 		{
 			codigo: 40901483,
-			procedimento: "Doppler colorido venoso de membro inferior - unilateral"
+			procedimento: "Doppler arterial venoso de membro inferior - unilateral"
 		},
 		{
 			codigo: 40901491,
