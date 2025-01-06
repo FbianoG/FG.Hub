@@ -214,7 +214,9 @@ export default function Guias() {
                         <fieldset>
                             <h3 className="formField-title">Dados da Internação</h3>
                             <label htmlFor=''>Indicação Clínica:</label>
-                            <textarea spellCheck='false' {...register("ind")} required></textarea>
+                            <textarea spellCheck='false' {...register("ind")} ></textarea>
+                            <label htmlFor=''>Observação:</label>
+                            <textarea spellCheck='false' {...register("obs")}></textarea>
                             <label htmlFor=''>CID:</label>
                             <input type='text' {...register('cid')} />
                             <label htmlFor=''>OPME:</label>

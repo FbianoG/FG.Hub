@@ -308,9 +308,20 @@ p#cid {
     left: 252px
 }
 
+#obs {
+    position: relative;
+    top: -20px;
+    left: -3px;
+    width: 898px;
+    height: 50px;
+    max-height: 50px;
+    overflow: hidden;
+    text-transform: none;
+}
+
 #dataSol {
     position: relative;
-    top: 62px;
+    top: -6px;
     width: 181px;
     left: -3px;
 }
@@ -318,7 +329,7 @@ p#cid {
 #logoImage {
     background: #fff;
     position: relative;
-    top: -1239px;
+    top: -1302px;
     width: 200px;
     height: 67px;
     left: 46px;

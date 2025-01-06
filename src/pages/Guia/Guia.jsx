@@ -77,6 +77,7 @@ export default function Guia({ data, func }) {
                 <p id="leito">{data.typeRoom}</p>
                 <p id="cnpj3"></p>
                 <p id="contratado3"></p>
+                <p id='obs'>{data.obs}</p>
                 <p id="dataSol">{data.dateSol.split('-').reverse().join('/')}</p>
                 <div id="logoImage">
                     <img id="logo" src={`./plansLogo/${data.plan}.png`} alt="logo do plano de saúde" />
