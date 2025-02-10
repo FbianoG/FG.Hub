@@ -53,6 +53,30 @@ export default function Home({ func }) {
         }
     }
 
+    const loginVisit = async (e) => {
+        try {
+            e.preventDefault()
+            setLoginLoading(true)
+            const dataForm = {
+                username: 'admin',
+                password: 'admin',
+            }
+            const response = await Login(dataForm)
+            localStorage.setItem('Token', response.token)
+            localStorage.setItem('Name', response.name)
+            localStorage.setItem('Cnpj', response.cnpj)
+            localStorage.setItem('Cnes', response.cnes)
+            reset()
+            location.href = '/planos'
+        } catch (error) {
+            console.log(error)
+            setShowAlert({ type: 'error', title: 'Erro', text: error.message, })
+        } finally {
+            setLoginLoading(false)
+        }
+
+    }
+
 
     return (
         <div className="home">
@@ -70,6 +94,7 @@ export default function Home({ func }) {
                 <label htmlFor=''>Senha</label>
                 <input type='password' {...register('password')} />
                 {loginLoading ? <button type='submit' disabled >Aguarde...</button> : <button type='submit'>Acessar</button>}
+                {loginLoading ? <button type='submit' disabled >Aguarde...</button> : <button type='button' onClick={(e) => loginVisit(e)}>Visitante</button>}
                 <span onClick={() => { setCreate(true), reset() }}>Criar conta</span>
             </form>}
 

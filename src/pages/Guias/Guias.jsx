@@ -159,6 +159,7 @@ export default function Guias() {
                             <select {...register("plan")} required>
                                 <option value="" selected>Plano</option>
                                 <option value="amil">Amil</option>
+                                <option value="assefaz">Assefaz</option>
                                 <option value="assim">Assim</option>
                                 <option value="bradesco">Bradesco</option>
                                 <option value="caberj">Caberj</option>
@@ -303,6 +304,7 @@ export default function Guias() {
                             <select {...register("plan")} required >
                                 <option value="" selected disabled>Plano</option>
                                 <option value="amil">Amil</option>
+                                <option value="assefaz">Assefaz</option>
                                 <option value="assim">Assim</option>
                                 <option value="bradesco">Bradesco</option>
                                 <option value="caberj">Caberj</option>
